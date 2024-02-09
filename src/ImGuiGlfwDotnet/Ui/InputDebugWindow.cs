@@ -25,7 +25,8 @@ public static class InputDebugWindow
 
 			ImGui.InputTextMultiline("Enter, arrow keys", ref _debugTextInput[2], 1024, new(0, 64));
 			ImGui.InputTextMultiline("Tab", ref _debugTextInput[3], 1024, new(0, 64), ImGuiInputTextFlags.AllowTabInput);
-			ImGui.InputTextMultiline("Shortcuts (CTRL+A, CTRL+C, CTRL+V)", ref _debugTextInput[4], 1024, new(0, 64));
+			ImGui.InputTextMultiline("CTRL shortcuts (CTRL+A, CTRL+C, CTRL+V)", ref _debugTextInput[4], 1024, new(0, 64));
+			ImGui.InputTextMultiline("SHIFT shortcuts (SHIFT+arrow keys, SHIFT+HOME)", ref _debugTextInput[5], 1024, new(0, 64));
 
 			ImGui.SeparatorText("Test mouse input");
 
@@ -55,6 +56,22 @@ public static class InputDebugWindow
 					ImGui.Separator();
 				}
 			}
+
+			ImGui.EndChild();
+
+			ImGui.TextWrapped("""
+				ISSUES:
+
+				1. Certain keys currently cause lag for some reason:
+				   Keypad: 4 5 6 1 2 3 0
+				   Digits row: - = [ ] \ ; ' ` , . /
+
+				   Maybe GLFW doesn't repeat them as fast???
+
+				2. Default enter key submits twice.
+
+				3. CTRL+A, CTRL+C, and CTRL+V don't work.
+				""");
 		}
 
 		ImGui.End();

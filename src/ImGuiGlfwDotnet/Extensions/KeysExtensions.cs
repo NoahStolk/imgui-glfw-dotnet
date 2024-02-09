@@ -213,6 +213,9 @@ public static class KeysExtensions
 
 			Keys.KeypadDecimal => '.',
 			Keys.KeypadSubtract => '-',
+			Keys.KeypadAdd => '+',
+			Keys.KeypadMultiply => '*',
+			Keys.KeypadDivide => '/',
 
 			_ => null,
 		};
