@@ -64,13 +64,12 @@ public static class InputDebugWindow
 
 				1. Certain keys currently cause lag for some reason:
 				   Keypad: 4 5 6 1 2 3 0
-				   Digits row: - = [ ] \ ; ' ` , . /
+				   Digits row: - = `
+				   Other keys (not keypad): [ ] \ ; ' , . / CAPSLOCK
 
 				   Maybe GLFW doesn't repeat them as fast???
 
-				2. Default enter key submits twice.
-
-				3. CTRL+A, CTRL+C, and CTRL+V don't work.
+				2. CTRL+A, CTRL+C, and CTRL+V don't work.
 				""");
 		}
 

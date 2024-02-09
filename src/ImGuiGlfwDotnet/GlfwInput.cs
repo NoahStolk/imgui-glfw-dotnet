@@ -49,7 +49,7 @@ public static class GlfwInput
 
 			bool shift = keyModifiers.HasFlag(KeyModifiers.Shift);
 			char? c = key.GetChar(shift);
-			if (c.HasValue)
+			if (c.HasValue && !_charsPressed.Contains(c.Value))
 				_charsPressed.Add(c.Value);
 		}
 		else

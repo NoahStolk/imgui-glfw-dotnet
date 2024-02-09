@@ -50,6 +50,16 @@ public static class InputWindow
 
 				ImGui.EndTable();
 			}
+
+			ImGui.SeparatorText("GLFW pressed chars");
+
+			ImGui.Text(Inline.Span($"{GlfwInput.CharsPressed.Count} key(s):"));
+			ImGui.SameLine();
+			for (int i = 0; i < GlfwInput.CharsPressed.Count; i++)
+			{
+				ImGui.Text(Inline.Span(GlfwInput.CharsPressed[i]));
+				ImGui.SameLine();
+			}
 		}
 
 		ImGui.End();

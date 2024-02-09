@@ -169,11 +169,19 @@ public sealed class ImGuiController
 			if (keyValue < 0)
 				continue;
 
-			io.AddKeyEvent(key.GetImGuiKey(), GlfwInput.IsKeyDown(key));
+			ImGuiKey imGuiKey = key.GetImGuiKey();
+			if (imGuiKey != ImGuiKey.None)
+				io.AddKeyEvent(imGuiKey, GlfwInput.IsKeyDown(key));
 		}
 
 		for (int i = 0; i < GlfwInput.CharsPressed.Count; i++)
-			io.AddInputCharacter(GlfwInput.CharsPressed[i]);
+		{
+			char c = GlfwInput.CharsPressed[i];
+			if (c == '\n') // Enter is already handled by ImGui apparently.
+				continue;
+
+			io.AddInputCharacter(c);
+		}
 	}
 
 	#endregion Input
