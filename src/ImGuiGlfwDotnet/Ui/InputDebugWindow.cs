@@ -67,7 +67,7 @@ public static class InputDebugWindow
 				   Digits row: - = `
 				   Other keys (not keypad): [ ] \ ; ' , . / CAPSLOCK
 
-				   Maybe GLFW doesn't repeat them as fast???
+				   GLFW callback looks normal, so this should be an ImGui issue.
 
 				2. CTRL+A, CTRL+C, and CTRL+V don't work.
 				""");

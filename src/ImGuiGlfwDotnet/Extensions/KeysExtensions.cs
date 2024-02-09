@@ -160,7 +160,7 @@ public static class KeysExtensions
 		return (shift ? _displayStringsShift : _displayStrings).TryGetValue(key, out string? displayString) ? displayString : "[unmapped key]";
 	}
 
-	public static char? GetChar(this Keys key, bool isShiftKeyHeld)
+	public static char? GetImGuiInputChar(this Keys key, bool isShiftKeyHeld)
 	{
 		if ((int)key is >= (int)Keys.A and <= (int)Keys.Z)
 		{
@@ -168,6 +168,7 @@ public static class KeysExtensions
 			return isShiftKeyHeld ? c : char.ToLower(c);
 		}
 
+		// Note: don't map Keys.Enter. It's already handled by ImGui.
 		return key switch
 		{
 			Keys.Keypad0 => '0',
@@ -192,7 +193,6 @@ public static class KeysExtensions
 			Keys.Number8 => isShiftKeyHeld ? '*' : '8',
 			Keys.Number9 => isShiftKeyHeld ? '(' : '9',
 
-			Keys.Enter => '\n',
 			Keys.Space => ' ',
 
 			Keys.Comma => isShiftKeyHeld ? '<' : ',',

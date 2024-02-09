@@ -48,7 +48,7 @@ public static class GlfwInput
 			_keysDown[key] = true;
 
 			bool shift = keyModifiers.HasFlag(KeyModifiers.Shift);
-			char? c = key.GetChar(shift);
+			char? c = key.GetImGuiInputChar(shift);
 			if (c.HasValue && !_charsPressed.Contains(c.Value))
 				_charsPressed.Add(c.Value);
 		}

@@ -177,9 +177,6 @@ public sealed class ImGuiController
 		for (int i = 0; i < GlfwInput.CharsPressed.Count; i++)
 		{
 			char c = GlfwInput.CharsPressed[i];
-			if (c == '\n') // Enter is already handled by ImGui apparently.
-				continue;
-
 			io.AddInputCharacter(c);
 		}
 	}
