@@ -8,12 +8,12 @@ public static class GlfwInput
 	private static readonly Dictionary<MouseButton, bool> _mouseButtonsDown = new();
 	private static readonly Dictionary<Keys, bool> _keysDown = [];
 	private static readonly List<Keys> _keysChanged = [];
-	private static readonly List<CharPressedEvent> _charsPressed = [];
+	private static readonly List<uint> _charsPressed = [];
 
 	public static Vector2 CursorPosition { get; private set; }
 	public static float MouseWheelY { get; private set; }
 	public static IReadOnlyList<Keys> KeysChanged => _keysChanged;
-	public static IReadOnlyList<CharPressedEvent> CharsPressed => _charsPressed;
+	public static IReadOnlyList<uint> CharsPressed => _charsPressed;
 
 	#region Callbacks
 
@@ -59,7 +59,7 @@ public static class GlfwInput
 
 	public static void CharCallback(uint codepoint)
 	{
-		_charsPressed.Add(new(codepoint));
+		_charsPressed.Add(codepoint);
 	}
 
 	#endregion Callbacks

@@ -9,10 +9,10 @@ public static class InputDebugWindow
 	[
 		"Type letters and numbers: ",
 		"NOW HOLD SHIFT: ",
-		"Enter some enters, and use the arrow keys to navigate.",
-		"Insert some tabs (only works for this input field).",
-		"Select all text, copy, paste, and use CTRL+arrows to navigate between words.",
-		"Use SHIFT+arrows and SHIFT+home to select text.",
+		"Enter some enters, and use the arrow keys to navigate.\nUse backspace and delete to remove text.",
+		"Insert some tabs (only works for this input field).\nHold keys to see the repeat rate.",
+		"Select all text, copy, paste, and use CTRL + arrows to navigate between words.\nUse CTRL + backspace to delete words.",
+		"Use SHIFT + arrows / home / end / page up / page down to select text.",
 	];
 	private static bool _checkbox;
 
@@ -25,7 +25,7 @@ public static class InputDebugWindow
 			ImGui.InputText("Letters, numbers", ref _debugTextInput[0], 1024);
 			ImGui.InputText("Letters, numbers (SHIFT)", ref _debugTextInput[1], 1024);
 
-			ImGui.InputTextMultiline("Enter, arrow keys", ref _debugTextInput[2], 1024, new(0, 64));
+			ImGui.InputTextMultiline("Enter, arrow keys, backspace, delete", ref _debugTextInput[2], 1024, new(0, 64));
 			ImGui.InputTextMultiline("Tab", ref _debugTextInput[3], 1024, new(0, 64), ImGuiInputTextFlags.AllowTabInput);
 			ImGui.InputTextMultiline("CTRL shortcut\n- CTRL+A\n- CTRL+C\n- CTRL+V\n- CTRL+arrows", ref _debugTextInput[4], 1024, new(0, 64));
 			ImGui.InputTextMultiline("SHIFT shortcuts\n- SHIFT+arrows\n- SHIFT+home", ref _debugTextInput[5], 1024, new(0, 64));
@@ -60,11 +60,6 @@ public static class InputDebugWindow
 			}
 
 			ImGui.EndChild();
-
-			ImGui.SeparatorText("ISSUES");
-
-			ImGui.TextWrapped("CTRL+A, CTRL+C, and CTRL+V don't work. Oddly enough, SHIFT+HOME etc does work.");
-			ImGui.TextWrapped("CTRL+left arrow key works too, so it seems we need to do something else to get the CTRL+A shortcut working (submit A 'KEY' instead of A char?).");
 		}
 
 		ImGui.End();

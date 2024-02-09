@@ -156,10 +156,7 @@ public sealed class ImGuiController
 		io.AddMouseWheelEvent(0f, GlfwInput.MouseWheelY);
 
 		for (int i = 0; i < GlfwInput.CharsPressed.Count; i++)
-		{
-			CharPressedEvent charPressedEvent = GlfwInput.CharsPressed[i];
-			io.AddInputCharacter(charPressedEvent.Codepoint);
-		}
+			io.AddInputCharacter(GlfwInput.CharsPressed[i]);
 
 		for (int i = 0; i < GlfwInput.KeysChanged.Count; i++)
 		{
