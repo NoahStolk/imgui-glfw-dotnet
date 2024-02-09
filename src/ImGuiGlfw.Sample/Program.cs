@@ -5,7 +5,7 @@ using ImGuiNET;
 Graphics.CreateWindow(new("ImGuiGlfw - Sample", Constants.WindowWidth, Constants.WindowHeight, false));
 Graphics.SetWindowSizeLimits(1024, 768, 4096, 2160);
 
-ImGuiController imGuiController = new(Graphics.Gl, Constants.WindowWidth, Constants.WindowHeight);
+ImGuiController imGuiController = new(Graphics.Gl, Input.GlfwInput, Constants.WindowWidth, Constants.WindowHeight);
 
 ImGuiStylePtr style = ImGui.GetStyle();
 style.WindowPadding = new(4, 4);

@@ -48,6 +48,7 @@ public sealed class ImGuiController
 	private uint _vao;
 
 	private readonly GL _gl;
+	private readonly GlfwInput _glfwInput;
 	private readonly IntPtr _context;
 	private readonly uint _shaderId;
 	private readonly int _projectionMatrixLocation;
@@ -56,9 +57,10 @@ public sealed class ImGuiController
 	private int _windowWidth;
 	private int _windowHeight;
 
-	public ImGuiController(GL gl, int windowWidth, int windowHeight)
+	public ImGuiController(GL gl, GlfwInput glfwInput, int windowWidth, int windowHeight)
 	{
 		_gl = gl;
+		_glfwInput = glfwInput;
 		_windowWidth = windowWidth;
 		_windowHeight = windowHeight;
 
@@ -142,25 +144,25 @@ public sealed class ImGuiController
 
 	#region Input
 
-	private static void UpdateImGuiInput()
+	private void UpdateImGuiInput()
 	{
 		ImGuiIOPtr io = ImGui.GetIO();
 
-		io.AddMousePosEvent(GlfwInput.CursorPosition.X, GlfwInput.CursorPosition.Y);
-		io.AddMouseButtonEvent(0, GlfwInput.IsMouseButtonDown(MouseButton.Left));
-		io.AddMouseButtonEvent(1, GlfwInput.IsMouseButtonDown(MouseButton.Right));
-		io.AddMouseButtonEvent(2, GlfwInput.IsMouseButtonDown(MouseButton.Middle));
-		io.AddMouseWheelEvent(0f, GlfwInput.MouseWheelY);
+		io.AddMousePosEvent(_glfwInput.CursorPosition.X, _glfwInput.CursorPosition.Y);
+		io.AddMouseButtonEvent(0, _glfwInput.IsMouseButtonDown(MouseButton.Left));
+		io.AddMouseButtonEvent(1, _glfwInput.IsMouseButtonDown(MouseButton.Right));
+		io.AddMouseButtonEvent(2, _glfwInput.IsMouseButtonDown(MouseButton.Middle));
+		io.AddMouseWheelEvent(0f, _glfwInput.MouseWheelY);
 
-		for (int i = 0; i < GlfwInput.CharsPressed.Count; i++)
-			io.AddInputCharacter(GlfwInput.CharsPressed[i]);
+		for (int i = 0; i < _glfwInput.CharsPressed.Count; i++)
+			io.AddInputCharacter(_glfwInput.CharsPressed[i]);
 
-		for (int i = 0; i < GlfwInput.KeysChanged.Count; i++)
+		for (int i = 0; i < _glfwInput.KeysChanged.Count; i++)
 		{
-			Keys key = GlfwInput.KeysChanged[i];
+			Keys key = _glfwInput.KeysChanged[i];
 			ImGuiKey imGuiKey = key.GetImGuiInputKey();
 			if (imGuiKey != ImGuiKey.None)
-				io.AddKeyEvent(imGuiKey, GlfwInput.IsKeyDown(key));
+				io.AddKeyEvent(imGuiKey, _glfwInput.IsKeyDown(key));
 		}
 	}
 

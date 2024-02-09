@@ -34,7 +34,7 @@ public static class InputWindow
 					if (!Enum.IsDefined(key))
 						continue;
 
-					bool isDown = GlfwInput.IsKeyDown(key);
+					bool isDown = Input.GlfwInput.IsKeyDown(key);
 
 					ImGui.TableNextColumn();
 
@@ -52,11 +52,11 @@ public static class InputWindow
 
 			ImGui.SeparatorText("GLFW pressed chars");
 
-			ImGui.Text(Inline.Span($"{GlfwInput.CharsPressed.Count} key(s):"));
+			ImGui.Text(Inline.Span($"{Input.GlfwInput.CharsPressed.Count} key(s):"));
 			ImGui.SameLine();
-			for (int i = 0; i < GlfwInput.CharsPressed.Count; i++)
+			for (int i = 0; i < Input.GlfwInput.CharsPressed.Count; i++)
 			{
-				ImGui.Text(Inline.Span((char)GlfwInput.CharsPressed[i]));
+				ImGui.Text(Inline.Span((char)Input.GlfwInput.CharsPressed[i]));
 				ImGui.SameLine();
 			}
 		}
