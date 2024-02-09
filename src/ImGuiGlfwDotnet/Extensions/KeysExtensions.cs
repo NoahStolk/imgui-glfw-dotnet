@@ -155,12 +155,16 @@ public static class KeysExtensions
 		[Keys.F12] = "F12",
 	};
 
+	/// <summary>
+	/// Gets the display string for the given key.
+	/// Can be used to display shortcut information.
+	/// </summary>
 	public static string GetDisplayString(this Keys key, bool shift)
 	{
 		return (shift ? _displayStringsShift : _displayStrings).TryGetValue(key, out string? displayString) ? displayString : "[unmapped key]";
 	}
 
-	public static char? GetImGuiInputChar(this Keys key, bool isShiftKeyHeld)
+	internal static char? GetImGuiInputChar(this Keys key, bool isShiftKeyHeld)
 	{
 		if ((int)key is >= (int)Keys.A and <= (int)Keys.Z)
 		{
@@ -221,7 +225,7 @@ public static class KeysExtensions
 		};
 	}
 
-	public static ImGuiKey GetImGuiInputKey(this Keys key)
+	internal static ImGuiKey GetImGuiInputKey(this Keys key)
 	{
 		return key switch
 		{

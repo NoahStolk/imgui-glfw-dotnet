@@ -5,14 +5,16 @@ namespace ImGuiGlfwDotnet.Ui;
 
 public static class InputDebugWindow
 {
-	private static readonly string[] _debugTextInput = new string[1024];
+	private static readonly string[] _debugTextInput =
+	[
+		"Type letters and numbers: ",
+		"NOW HOLD SHIFT: ",
+		"Enter some enters, and use the arrow keys to navigate.",
+		"Insert some tabs (only works for this input field).",
+		"Select all text, copy, paste, and use CTRL+arrows to navigate between words.",
+		"Use SHIFT+arrows and SHIFT+home to select text.",
+	];
 	private static bool _checkbox;
-
-	static InputDebugWindow()
-	{
-		for (int i = 0; i < _debugTextInput.Length; i++)
-			_debugTextInput[i] = string.Empty;
-	}
 
 	public static void Render(ref bool showWindow)
 	{
@@ -25,8 +27,8 @@ public static class InputDebugWindow
 
 			ImGui.InputTextMultiline("Enter, arrow keys", ref _debugTextInput[2], 1024, new(0, 64));
 			ImGui.InputTextMultiline("Tab", ref _debugTextInput[3], 1024, new(0, 64), ImGuiInputTextFlags.AllowTabInput);
-			ImGui.InputTextMultiline("CTRL shortcuts (CTRL+A, CTRL+C, CTRL+V)", ref _debugTextInput[4], 1024, new(0, 64));
-			ImGui.InputTextMultiline("SHIFT shortcuts (SHIFT+arrow keys, SHIFT+HOME)", ref _debugTextInput[5], 1024, new(0, 64));
+			ImGui.InputTextMultiline("CTRL shortcut\n- CTRL+A\n- CTRL+C\n- CTRL+V\n- CTRL+arrows", ref _debugTextInput[4], 1024, new(0, 64));
+			ImGui.InputTextMultiline("SHIFT shortcuts\n- SHIFT+arrows\n- SHIFT+home", ref _debugTextInput[5], 1024, new(0, 64));
 
 			ImGui.SeparatorText("Test mouse input");
 

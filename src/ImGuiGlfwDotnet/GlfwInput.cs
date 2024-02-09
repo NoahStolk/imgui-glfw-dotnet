@@ -47,7 +47,13 @@ public static class GlfwInput
 		{
 			_keysDown[key] = true;
 
-			bool shift = keyModifiers.HasFlag(KeyModifiers.Shift);
+			// Warnings are reported because KeyModifiers is not marked with [Flags], but it should be.
+			// ReSharper disable once NonConstantEqualityExpressionHasConstantResult
+			// ReSharper disable once BitwiseOperatorOnEnumWithoutFlags
+ #pragma warning disable RCS1130, S3265
+			bool shift = (keyModifiers & KeyModifiers.Shift) != 0;
+ #pragma warning restore S3265, RCS1130
+
 			char? c = key.GetImGuiInputChar(shift);
 			if (c.HasValue && !_charsPressed.Contains(c.Value))
 				_charsPressed.Add(c.Value);
