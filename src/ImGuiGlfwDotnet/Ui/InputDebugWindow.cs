@@ -1,51 +1,59 @@
 ﻿using ImGuiGlfwDotnet.Internals;
 using ImGuiNET;
-using Silk.NET.GLFW;
+using System.Drawing;
 
 namespace ImGuiGlfwDotnet.Ui;
 
 public static class InputDebugWindow
 {
-	private static string _debugTextInput = string.Empty;
+	private static readonly string[] _debugTextInput = new string[1024];
+	private static bool _checkbox;
+
+	static InputDebugWindow()
+	{
+		for (int i = 0; i < _debugTextInput.Length; i++)
+			_debugTextInput[i] = string.Empty;
+	}
 
 	public static void Render(ref bool showWindow)
 	{
 		if (ImGui.Begin("Input debug", ref showWindow))
 		{
-			ImGuiIOPtr io = ImGui.GetIO();
+			ImGui.SeparatorText("Test keyboard input");
 
-			ImGui.SeparatorText("ImGui key modifiers");
-			ImGui.TextColored(io.KeyCtrl ? Rgba.White : Rgba.Gray(0.4f), "CTRL");
-			ImGui.SameLine();
-			ImGui.TextColored(io.KeyShift ? Rgba.White : Rgba.Gray(0.4f), "SHIFT");
-			ImGui.SameLine();
-			ImGui.TextColored(io.KeyAlt ? Rgba.White : Rgba.Gray(0.4f), "ALT");
-			ImGui.SameLine();
-			ImGui.TextColored(io.KeySuper ? Rgba.White : Rgba.Gray(0.4f), "SUPER");
+			ImGui.InputText("Letters, numbers", ref _debugTextInput[0], 1024);
+			ImGui.InputText("Letters, numbers (SHIFT)", ref _debugTextInput[1], 1024);
 
-			ImGui.SeparatorText("GLFW keys");
-			if (ImGui.BeginTable("GLFW keys", 8))
+			ImGui.InputTextMultiline("Enter", ref _debugTextInput[2], 1024, new(0, 64));
+			ImGui.InputTextMultiline("Tab", ref _debugTextInput[3], 1024, new(0, 64), ImGuiInputTextFlags.AllowTabInput);
+			ImGui.InputTextMultiline("Shortcuts (CTRL A, CTRL C, CTRL V)", ref _debugTextInput[4], 1024, new(0, 64));
+
+			ImGui.SeparatorText("Test mouse input");
+
+			ImGui.Checkbox("Checkbox", ref _checkbox);
+
+			if (ImGui.BeginChild("Scroll area", new(256, 128)))
 			{
-				for (int i = 0; i < 1024; i++)
+				for (int i = 0; i < 50; i++)
 				{
-					if (i == 0)
-						ImGui.TableNextRow();
-
-					Keys key = (Keys)i;
-					if (!Enum.IsDefined(key))
-						continue;
-
-					bool isDown = GlfwInput.IsKeyDown(key);
-
-					ImGui.TableNextColumn();
-					ImGui.TextColored(isDown ? Rgba.White : Rgba.Gray(0.4f), key.ToString());
+					Rgba color = (i % 3) switch
+					{
+						0 => Rgba.Yellow,
+						1 => Rgba.Aqua,
+						_ => Rgba.Red,
+					};
+					ReadOnlySpan<char> text = (i % 3) switch
+					{
+						0 => "Scrolling should not go to top or bottom instantly",
+						1 => "Scrolling should go evenly per frame (not missing inputs or jumping)",
+						_ => "This should work with and without VSync",
+					};
+					ImGui.PushStyleColor(ImGuiCol.Text, color);
+					ImGui.TextWrapped(text);
+					ImGui.Separator();
+					ImGui.PopStyleColor();
 				}
-
-				ImGui.EndTable();
 			}
-
-			ImGui.SeparatorText("Debug text input");
-			ImGui.InputTextMultiline("##DebugTextInput", ref _debugTextInput, 1024, new(0, 128));
 		}
 
 		ImGui.End();

@@ -73,5 +73,6 @@ public static class GlfwInput
 	public static void PostRender()
 	{
 		_charsPressed.Clear();
+		MouseWheelY = 0;
 	}
 }

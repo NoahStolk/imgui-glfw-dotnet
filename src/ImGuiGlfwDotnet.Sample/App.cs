@@ -1,4 +1,5 @@
 ﻿using ImGuiGlfwDotnet.Ui;
+using ImGuiNET;
 using Silk.NET.OpenGL;
 
 namespace ImGuiGlfwDotnet.Sample;
@@ -69,6 +70,8 @@ public sealed class App
 		Graphics.Gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 		bool temp = true;
+		ImGui.ShowDemoWindow();
+		InputWindow.Render(ref temp);
 		InputDebugWindow.Render(ref temp);
 		PerformanceWindow.Render(ref temp, _performanceMeasurement);
 
