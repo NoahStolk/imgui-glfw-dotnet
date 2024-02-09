@@ -142,7 +142,6 @@ public sealed class ImGuiController
 
 		ImGui.NewFrame();
 
-		// TODO: This doesn't work. Figure out where these should be set (or, figure out where they're being reset exactly).
 		io.KeyCtrl = GlfwInput.IsKeyDown(Keys.ControlLeft) || GlfwInput.IsKeyDown(Keys.ControlRight);
 		io.KeyAlt = GlfwInput.IsKeyDown(Keys.AltLeft) || GlfwInput.IsKeyDown(Keys.AltRight);
 		io.KeyShift = GlfwInput.IsKeyDown(Keys.ShiftLeft) || GlfwInput.IsKeyDown(Keys.ShiftRight);
@@ -169,6 +168,9 @@ public sealed class ImGuiController
 			if (keyValue < 0)
 				continue;
 
+			// TODO: Find out if this is the correct way to handle this.
+			// It seems that not all keys need to be handled like this.
+			// Some keys are handled automatically.
 			ImGuiKey imGuiKey = key.GetImGuiKey();
 			if (imGuiKey != ImGuiKey.None)
 				io.AddKeyEvent(imGuiKey, GlfwInput.IsKeyDown(key));

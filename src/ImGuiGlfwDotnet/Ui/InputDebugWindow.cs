@@ -59,18 +59,9 @@ public static class InputDebugWindow
 
 			ImGui.EndChild();
 
-			ImGui.TextWrapped("""
-				ISSUES:
+			ImGui.SeparatorText("ISSUES");
 
-				1. Certain keys currently cause lag for some reason:
-				   Keypad: 4 5 6 1 2 3 0
-				   Digits row: - = `
-				   Other keys (not keypad): [ ] \ ; ' , . / CAPSLOCK
-
-				   GLFW callback looks normal, so this should be an ImGui issue.
-
-				2. CTRL+A, CTRL+C, and CTRL+V don't work.
-				""");
+			ImGui.TextWrapped("CTRL+A, CTRL+C, and CTRL+V don't work. Oddly enough, SHIFT+HOME etc does work.");
 		}
 
 		ImGui.End();
