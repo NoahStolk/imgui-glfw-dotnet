@@ -55,7 +55,7 @@ public static class GlfwInput
 
 	public static void CharCallback(uint codepoint)
 	{
-		_charsPressed.Add(new(codepoint, 0));
+		_charsPressed.Add(new(codepoint));
 	}
 
 	#endregion Callbacks

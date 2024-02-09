@@ -1,5 +1,3 @@
-﻿using Silk.NET.GLFW;
+﻿namespace ImGuiGlfwDotnet;
 
-namespace ImGuiGlfwDotnet;
-
-public readonly record struct CharPressedEvent(uint Codepoint, KeyModifiers KeyModifiers);
+public readonly record struct CharPressedEvent(uint Codepoint);
