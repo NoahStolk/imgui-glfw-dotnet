@@ -1,7 +1,5 @@
 ﻿using ImGuiGlfwDotnet.Ui;
-using ImGuiNET;
 using Silk.NET.OpenGL;
-using System.Numerics;
 
 namespace ImGuiGlfwDotnet.Sample;
 
@@ -16,6 +14,7 @@ public sealed class App
 	private const double _mainLoopLength = 1 / _mainLoopRate;
 
 	private readonly ImGuiController _imGuiController;
+	private readonly PerformanceMeasurement _performanceMeasurement = new();
 
 	private double _currentTime = Graphics.Glfw.GetTime();
 	private double _accumulator;
@@ -44,10 +43,11 @@ public sealed class App
 	private unsafe void MainLoop()
 	{
 		double mainStartTime = Graphics.Glfw.GetTime();
-
 		_frameTime = mainStartTime - _currentTime;
 		if (_frameTime > _maxMainDelta)
 			_frameTime = _maxMainDelta;
+
+		_performanceMeasurement.Update(mainStartTime, _frameTime);
 
 		_currentTime = mainStartTime;
 		_accumulator += _frameTime;
@@ -70,6 +70,7 @@ public sealed class App
 
 		bool temp = true;
 		InputDebugWindow.Render(ref temp);
+		PerformanceWindow.Render(ref temp, _performanceMeasurement);
 
 		_imGuiController.Render();
 
