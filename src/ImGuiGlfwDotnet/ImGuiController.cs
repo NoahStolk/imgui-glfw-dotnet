@@ -141,11 +141,6 @@ public sealed class ImGuiController
 		UpdateImGuiInput();
 
 		ImGui.NewFrame();
-
-		io.KeyCtrl = GlfwInput.IsKeyDown(Keys.ControlLeft) || GlfwInput.IsKeyDown(Keys.ControlRight);
-		io.KeyAlt = GlfwInput.IsKeyDown(Keys.AltLeft) || GlfwInput.IsKeyDown(Keys.AltRight);
-		io.KeyShift = GlfwInput.IsKeyDown(Keys.ShiftLeft) || GlfwInput.IsKeyDown(Keys.ShiftRight);
-		io.KeySuper = GlfwInput.IsKeyDown(Keys.SuperLeft) || GlfwInput.IsKeyDown(Keys.SuperRight);
 	}
 
 	#region Input
@@ -154,12 +149,17 @@ public sealed class ImGuiController
 	{
 		ImGuiIOPtr io = ImGui.GetIO();
 
-		io.MousePos = GlfwInput.CursorPosition;
-		io.MouseWheel = GlfwInput.MouseWheelY;
+		io.AddMousePosEvent(GlfwInput.CursorPosition.X, GlfwInput.CursorPosition.Y);
+		io.AddMouseButtonEvent(0, GlfwInput.IsMouseButtonDown(MouseButton.Left));
+		io.AddMouseButtonEvent(1, GlfwInput.IsMouseButtonDown(MouseButton.Right));
+		io.AddMouseButtonEvent(2, GlfwInput.IsMouseButtonDown(MouseButton.Middle));
+		io.AddMouseWheelEvent(0f, GlfwInput.MouseWheelY);
 
-		io.MouseDown[0] = GlfwInput.IsMouseButtonDown(MouseButton.Left);
-		io.MouseDown[1] = GlfwInput.IsMouseButtonDown(MouseButton.Right);
-		io.MouseDown[2] = GlfwInput.IsMouseButtonDown(MouseButton.Middle);
+		for (int i = 0; i < GlfwInput.CharsPressed.Count; i++)
+		{
+			CharPressedEvent charPressedEvent = GlfwInput.CharsPressed[i];
+			io.AddInputCharacter(charPressedEvent.Codepoint);
+		}
 
 		for (int i = 0; i < _allKeys.Count; i++)
 		{
@@ -173,11 +173,8 @@ public sealed class ImGuiController
 				io.AddKeyEvent(imGuiKey, GlfwInput.IsKeyDown(key));
 		}
 
-		for (int i = 0; i < GlfwInput.CharsPressed.Count; i++)
-		{
-			char c = GlfwInput.CharsPressed[i];
-			io.AddInputCharacter(c);
-		}
+		io.AddKeyEvent(ImGuiKey.ModCtrl, GlfwInput.IsKeyDown(Keys.ControlLeft) || GlfwInput.IsKeyDown(Keys.ControlRight));
+		io.AddKeyEvent(ImGuiKey.ModShift, GlfwInput.IsKeyDown(Keys.ShiftLeft) || GlfwInput.IsKeyDown(Keys.ShiftRight));
 	}
 
 	#endregion Input

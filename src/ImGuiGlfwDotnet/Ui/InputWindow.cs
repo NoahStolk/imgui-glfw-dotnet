@@ -57,7 +57,7 @@ public static class InputWindow
 			ImGui.SameLine();
 			for (int i = 0; i < GlfwInput.CharsPressed.Count; i++)
 			{
-				ImGui.Text(Inline.Span(GlfwInput.CharsPressed[i]));
+				ImGui.Text(Inline.Span((char)GlfwInput.CharsPressed[i].Codepoint));
 				ImGui.SameLine();
 			}
 		}

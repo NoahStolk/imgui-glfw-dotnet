@@ -83,8 +83,9 @@ public static class Graphics
 		_glfw.SetWindowFocusCallback(Window, (_, focusing) => WindowIsActive = focusing);
 		_glfw.SetCursorPosCallback(Window, (_, x, y) => GlfwInput.CursorPosCallback(x, y));
 		_glfw.SetScrollCallback(Window, (_, _, y) => GlfwInput.MouseWheelCallback(y));
-		_glfw.SetMouseButtonCallback(Window, (_, button, state, _) => GlfwInput.ButtonCallback(button, state));
+		_glfw.SetMouseButtonCallback(Window, (_, button, state, keyModifiers) => GlfwInput.MouseButtonCallback(button, state, keyModifiers));
 		_glfw.SetKeyCallback(Window, (_, keys, _, state, keyModifiers) => GlfwInput.KeyCallback(keys, state, keyModifiers));
+		_glfw.SetCharCallback(Window, (_, codepoint) => GlfwInput.CharCallback(codepoint));
 
 		int x = (PrimaryMonitorWidth - CurrentWindowState.Width) / 2;
 		int y = (PrimaryMonitorHeight - CurrentWindowState.Height) / 2;

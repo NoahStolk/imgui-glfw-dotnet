@@ -164,67 +164,6 @@ public static class KeysExtensions
 		return (shift ? _displayStringsShift : _displayStrings).TryGetValue(key, out string? displayString) ? displayString : "[unmapped key]";
 	}
 
-	internal static char? GetImGuiInputChar(this Keys key, bool isShiftKeyHeld)
-	{
-		if ((int)key is >= (int)Keys.A and <= (int)Keys.Z)
-		{
-			char c = (char)key;
-			return isShiftKeyHeld ? c : char.ToLower(c);
-		}
-
-		// Note: don't map Keys.Enter. It's already handled by ImGui.
-		return key switch
-		{
-			Keys.Keypad0 => '0',
-			Keys.Keypad1 => '1',
-			Keys.Keypad2 => '2',
-			Keys.Keypad3 => '3',
-			Keys.Keypad4 => '4',
-			Keys.Keypad5 => '5',
-			Keys.Keypad6 => '6',
-			Keys.Keypad7 => '7',
-			Keys.Keypad8 => '8',
-			Keys.Keypad9 => '9',
-
-			Keys.Number0 => isShiftKeyHeld ? ')' : '0',
-			Keys.Number1 => isShiftKeyHeld ? '!' : '1',
-			Keys.Number2 => isShiftKeyHeld ? '@' : '2',
-			Keys.Number3 => isShiftKeyHeld ? '#' : '3',
-			Keys.Number4 => isShiftKeyHeld ? '$' : '4',
-			Keys.Number5 => isShiftKeyHeld ? '%' : '5',
-			Keys.Number6 => isShiftKeyHeld ? '^' : '6',
-			Keys.Number7 => isShiftKeyHeld ? '&' : '7',
-			Keys.Number8 => isShiftKeyHeld ? '*' : '8',
-			Keys.Number9 => isShiftKeyHeld ? '(' : '9',
-
-			Keys.Space => ' ',
-
-			Keys.Comma => isShiftKeyHeld ? '<' : ',',
-			Keys.Period => isShiftKeyHeld ? '>' : '.',
-			Keys.Slash => isShiftKeyHeld ? '?' : '/',
-
-			Keys.Semicolon => isShiftKeyHeld ? ':' : ';',
-			Keys.Apostrophe => isShiftKeyHeld ? '"' : '\'',
-
-			Keys.LeftBracket => isShiftKeyHeld ? '{' : '[',
-			Keys.RightBracket => isShiftKeyHeld ? '}' : ']',
-			Keys.BackSlash => isShiftKeyHeld ? '|' : '\\',
-
-			Keys.Minus => isShiftKeyHeld ? '_' : '-',
-			Keys.Equal => isShiftKeyHeld ? '+' : '=',
-
-			Keys.GraveAccent => isShiftKeyHeld ? '~' : '`',
-
-			Keys.KeypadDecimal => '.',
-			Keys.KeypadSubtract => '-',
-			Keys.KeypadAdd => '+',
-			Keys.KeypadMultiply => '*',
-			Keys.KeypadDivide => '/',
-
-			_ => null,
-		};
-	}
-
 	internal static ImGuiKey GetImGuiInputKey(this Keys key)
 	{
 		return key switch
@@ -256,14 +195,20 @@ public static class KeysExtensions
 
 			Keys.KeypadEnter => ImGuiKey.KeypadEnter,
 
-			Keys.ShiftLeft => ImGuiKey.LeftShift,
-			Keys.ControlLeft => ImGuiKey.LeftCtrl,
-			Keys.AltLeft => ImGuiKey.LeftAlt,
-			Keys.SuperLeft => ImGuiKey.LeftSuper,
-			Keys.ShiftRight => ImGuiKey.RightShift,
-			Keys.ControlRight => ImGuiKey.RightCtrl,
-			Keys.AltRight => ImGuiKey.RightAlt,
-			Keys.SuperRight => ImGuiKey.RightSuper,
+			// Keys.ShiftLeft => ImGuiKey.LeftShift,
+			// Keys.ControlLeft => ImGuiKey.LeftCtrl,
+			// Keys.AltLeft => ImGuiKey.LeftAlt,
+			// Keys.SuperLeft => ImGuiKey.LeftSuper,
+			// Keys.ShiftRight => ImGuiKey.RightShift,
+			// Keys.ControlRight => ImGuiKey.RightCtrl,
+			// Keys.AltRight => ImGuiKey.RightAlt,
+			// Keys.SuperRight => ImGuiKey.RightSuper,
+
+			// Keys.ShiftLeft or Keys.ShiftRight => ImGuiKey.ModShift,
+			// Keys.ControlLeft or Keys.ControlRight => ImGuiKey.ModCtrl,
+			// Keys.AltLeft or Keys.AltRight => ImGuiKey.ModAlt,
+			// Keys.SuperLeft or Keys.SuperRight => ImGuiKey.ModSuper,
+
 			Keys.Menu => ImGuiKey.Menu,
 
 			_ => ImGuiKey.None,
