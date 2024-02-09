@@ -8,6 +8,15 @@
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
 
+  <PropertyGroup Label="Package information">
+    <PackageId>NoahStolk.ImGuiGlfw</PackageId>
+    <Authors>Noah Stolk</Authors>
+    <Copyright>Copyright © Noah Stolk</Copyright>
+    <RepositoryType>git</RepositoryType>
+    <RepositoryUrl>https://github.com/NoahStolk/imgui-glfw-dotnet</RepositoryUrl>
+    <Version>0.1.0</Version>
+  </PropertyGroup>
+
   <ItemGroup Label="External dependencies">
     <PackageReference Include="ImGui.NET" Version="1.90.1.1" />
     <PackageReference Include="Silk.NET.GLFW" Version="2.20.0" />
