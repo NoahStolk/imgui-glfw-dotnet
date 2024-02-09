@@ -168,9 +168,6 @@ public sealed class ImGuiController
 			if (keyValue < 0)
 				continue;
 
-			// TODO: Find out if this is the correct way to handle this.
-			// It seems that not all keys need to be handled like this.
-			// Some keys are handled automatically.
 			ImGuiKey imGuiKey = key.GetImGuiKey();
 			if (imGuiKey != ImGuiKey.None)
 				io.AddKeyEvent(imGuiKey, GlfwInput.IsKeyDown(key));

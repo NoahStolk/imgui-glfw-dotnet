@@ -62,6 +62,7 @@ public static class InputDebugWindow
 			ImGui.SeparatorText("ISSUES");
 
 			ImGui.TextWrapped("CTRL+A, CTRL+C, and CTRL+V don't work. Oddly enough, SHIFT+HOME etc does work.");
+			ImGui.TextWrapped("CTRL+left arrow key works too, so it seems we need to do something else to get the CTRL+A shortcut working (submit A 'KEY' instead of A char?).");
 		}
 
 		ImGui.End();
