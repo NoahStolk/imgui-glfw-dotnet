@@ -1,7 +1,7 @@
 ﻿using ImGuiNET;
 using Silk.NET.GLFW;
 
-namespace ImGuiGlfwDotnet.Sample.Ui;
+namespace ImGuiGlfw.Sample.Ui;
 
 public static class InputWindow
 {

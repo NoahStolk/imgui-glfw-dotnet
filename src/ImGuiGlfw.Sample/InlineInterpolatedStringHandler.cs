@@ -1,6 +1,6 @@
 ﻿using System.Runtime.CompilerServices;
 
-namespace ImGuiGlfwDotnet.Sample;
+namespace ImGuiGlfw.Sample;
 
 #pragma warning disable CA1822, RCS1163
 [InterpolatedStringHandler]

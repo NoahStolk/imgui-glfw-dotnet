@@ -4,7 +4,7 @@ using System.Text;
 using ErrorCode = Silk.NET.GLFW.ErrorCode;
 using Monitor = Silk.NET.GLFW.Monitor;
 
-namespace ImGuiGlfwDotnet.Sample;
+namespace ImGuiGlfw.Sample;
 
 public static class Graphics
 {

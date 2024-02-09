@@ -1,8 +1,8 @@
-﻿using ImGuiGlfwDotnet.Sample.Ui;
+﻿using ImGuiGlfw.Sample.Ui;
 using ImGuiNET;
 using Silk.NET.OpenGL;
 
-namespace ImGuiGlfwDotnet.Sample;
+namespace ImGuiGlfw.Sample;
 
 public sealed class App
 {

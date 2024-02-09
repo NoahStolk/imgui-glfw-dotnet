@@ -1,7 +1,7 @@
 ﻿using Silk.NET.GLFW;
 using System.Numerics;
 
-namespace ImGuiGlfwDotnet;
+namespace ImGuiGlfw;
 
 public static class GlfwInput
 {

@@ -1,11 +1,11 @@
-﻿using ImGuiGlfwDotnet.Internals;
+﻿using ImGuiGlfw.Internals;
 using ImGuiNET;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using System.Numerics;
 using System.Runtime.InteropServices;
 
-namespace ImGuiGlfwDotnet;
+namespace ImGuiGlfw;
 
 public sealed class ImGuiController
 {

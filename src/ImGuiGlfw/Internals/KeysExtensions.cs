@@ -1,7 +1,7 @@
 using ImGuiNET;
 using Silk.NET.GLFW;
 
-namespace ImGuiGlfwDotnet.Internals;
+namespace ImGuiGlfw.Internals;
 
 internal static class KeysExtensions
 {

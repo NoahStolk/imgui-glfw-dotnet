@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImGuiGlfwDotnet", "ImGuiGlfwDotnet\ImGuiGlfwDotnet.csproj", "{B515A0D2-E172-4C50-B2B4-A74A504B945D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImGuiGlfw", "ImGuiGlfw\ImGuiGlfw.csproj", "{B515A0D2-E172-4C50-B2B4-A74A504B945D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImGuiGlfwDotnet.Sample", "ImGuiGlfwDotnet.Sample\ImGuiGlfwDotnet.Sample.csproj", "{63403017-2DFD-4B25-A31C-86501E5C9E32}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImGuiGlfw.Sample", "ImGuiGlfw.Sample\ImGuiGlfw.Sample.csproj", "{63403017-2DFD-4B25-A31C-86501E5C9E32}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

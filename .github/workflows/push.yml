@@ -15,11 +15,11 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Build
-      run: dotnet build src/ImGuiGlfwDotnet.sln -c Release
+      run: dotnet build src/ImGuiGlfw.sln -c Release
     - name: Test
-      run: dotnet test src/ImGuiGlfwDotnet.sln -c Release --no-build
+      run: dotnet test src/ImGuiGlfw.sln -c Release --no-build
     - name: Pack
-      run: dotnet pack src/ImGuiGlfwDotnet -c Release -o .
+      run: dotnet pack src/ImGuiGlfw -c Release -o .
     - name: Push
       run: dotnet nuget push *.nupkg -s nuget.org -k ${NUGET_SECRET} -n --skip-duplicate
       env:

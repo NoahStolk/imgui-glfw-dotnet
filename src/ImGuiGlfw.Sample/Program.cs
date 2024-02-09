@@ -1,8 +1,8 @@
-﻿using ImGuiGlfwDotnet;
-using ImGuiGlfwDotnet.Sample;
+﻿using ImGuiGlfw;
+using ImGuiGlfw.Sample;
 using ImGuiNET;
 
-Graphics.CreateWindow(new("ImGuiGlfwDotnet - Sample", Constants.WindowWidth, Constants.WindowHeight, false));
+Graphics.CreateWindow(new("ImGuiGlfw - Sample", Constants.WindowWidth, Constants.WindowHeight, false));
 Graphics.SetWindowSizeLimits(1024, 768, 4096, 2160);
 
 ImGuiController imGuiController = new(Graphics.Gl, Constants.WindowWidth, Constants.WindowHeight);

@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.3.0
+
+### Changed
+
+- Changed namespace to `ImGuiGlfw`.
+
 ## 0.2.0
 
 ### Added

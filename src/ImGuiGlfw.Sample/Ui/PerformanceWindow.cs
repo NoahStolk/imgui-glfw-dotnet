@@ -1,6 +1,6 @@
 ﻿using ImGuiNET;
 
-namespace ImGuiGlfwDotnet.Sample.Ui;
+namespace ImGuiGlfw.Sample.Ui;
 
 public static class PerformanceWindow
 {
