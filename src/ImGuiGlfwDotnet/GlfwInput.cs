@@ -7,10 +7,12 @@ public static class GlfwInput
 {
 	private static readonly Dictionary<MouseButton, bool> _mouseButtonsDown = new();
 	private static readonly Dictionary<Keys, bool> _keysDown = [];
+	private static readonly List<Keys> _keysChanged = [];
 	private static readonly List<CharPressedEvent> _charsPressed = [];
 
 	public static Vector2 CursorPosition { get; private set; }
 	public static float MouseWheelY { get; private set; }
+	public static IReadOnlyList<Keys> KeysChanged => _keysChanged;
 	public static IReadOnlyList<CharPressedEvent> CharsPressed => _charsPressed;
 
 	#region Callbacks
@@ -41,6 +43,8 @@ public static class GlfwInput
 
 	public static void KeyCallback(Keys key, InputAction state, KeyModifiers keyModifiers)
 	{
+		_keysChanged.Add(key);
+
 		if (state is InputAction.Press or InputAction.Repeat)
 		{
 			_keysDown[key] = true;
@@ -73,6 +77,7 @@ public static class GlfwInput
 	public static void PostRender()
 	{
 		_charsPressed.Clear();
+		_keysChanged.Clear();
 		MouseWheelY = 0;
 	}
 }

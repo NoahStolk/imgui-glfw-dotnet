@@ -161,20 +161,13 @@ public sealed class ImGuiController
 			io.AddInputCharacter(charPressedEvent.Codepoint);
 		}
 
-		for (int i = 0; i < _allKeys.Count; i++)
+		for (int i = 0; i < GlfwInput.KeysChanged.Count; i++)
 		{
-			Keys key = _allKeys[i];
-			int keyValue = (int)key;
-			if (keyValue < 0)
-				continue;
-
+			Keys key = GlfwInput.KeysChanged[i];
 			ImGuiKey imGuiKey = key.GetImGuiInputKey();
 			if (imGuiKey != ImGuiKey.None)
 				io.AddKeyEvent(imGuiKey, GlfwInput.IsKeyDown(key));
 		}
-
-		io.AddKeyEvent(ImGuiKey.ModCtrl, GlfwInput.IsKeyDown(Keys.ControlLeft) || GlfwInput.IsKeyDown(Keys.ControlRight));
-		io.AddKeyEvent(ImGuiKey.ModShift, GlfwInput.IsKeyDown(Keys.ShiftLeft) || GlfwInput.IsKeyDown(Keys.ShiftRight));
 	}
 
 	#endregion Input
