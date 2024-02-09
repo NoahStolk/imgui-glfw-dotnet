@@ -1,5 +1,4 @@
-﻿using ImGuiGlfwDotnet.Extensions;
-using ImGuiGlfwDotnet.Internals;
+﻿using ImGuiGlfwDotnet.Internals;
 using ImGuiNET;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
@@ -43,8 +42,6 @@ public sealed class ImGuiController
 			outColor = fragColor * texture(image, fragUv.st);
 		}
 		""";
-
-	private static readonly IReadOnlyList<Keys> _allKeys = (Keys[])Enum.GetValues(typeof(Keys));
 
 	private readonly uint _vbo;
 	private readonly uint _ebo;

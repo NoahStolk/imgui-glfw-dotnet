@@ -1,7 +1,6 @@
-﻿using ImGuiGlfwDotnet.Internals;
-using ImGuiNET;
+﻿using ImGuiNET;
 
-namespace ImGuiGlfwDotnet.Ui;
+namespace ImGuiGlfwDotnet.Sample.Ui;
 
 public static class InputDebugWindow
 {
@@ -16,9 +15,9 @@ public static class InputDebugWindow
 	];
 	private static bool _checkbox;
 
-	public static void Render(ref bool showWindow)
+	public static void Render()
 	{
-		if (ImGui.Begin("Input debug", ref showWindow))
+		if (ImGui.Begin("Input debug"))
 		{
 			ImGui.SeparatorText("Test keyboard input");
 

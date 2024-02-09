@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace ImGuiGlfwDotnet.Internals;
+namespace ImGuiGlfwDotnet.Sample;
 
 /// <summary>
 /// Unsafe methods to quickly format values into a <see cref="Span{T}"/> without allocating memory.

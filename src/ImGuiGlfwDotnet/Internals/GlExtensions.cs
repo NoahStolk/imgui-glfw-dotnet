@@ -1,9 +1,9 @@
 using Silk.NET.OpenGL;
 using System.Numerics;
 
-namespace ImGuiGlfwDotnet.Extensions;
+namespace ImGuiGlfwDotnet.Internals;
 
-public static class GlExtensions
+internal static class GlExtensions
 {
 	public static void UniformMatrix4x4(this GL gl, int uniformLocation, Matrix4x4 value)
 	{

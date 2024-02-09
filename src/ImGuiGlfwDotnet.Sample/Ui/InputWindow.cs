@@ -1,16 +1,15 @@
-﻿using ImGuiGlfwDotnet.Internals;
-using ImGuiNET;
+﻿using ImGuiNET;
 using Silk.NET.GLFW;
 
-namespace ImGuiGlfwDotnet.Ui;
+namespace ImGuiGlfwDotnet.Sample.Ui;
 
 public static class InputWindow
 {
 	private static readonly Dictionary<Keys, string> _keyDisplayStringCache = [];
 
-	public static void Render(ref bool showWindow)
+	public static void Render()
 	{
-		if (ImGui.Begin("Input", ref showWindow))
+		if (ImGui.Begin("Input"))
 		{
 			ImGuiIOPtr io = ImGui.GetIO();
 

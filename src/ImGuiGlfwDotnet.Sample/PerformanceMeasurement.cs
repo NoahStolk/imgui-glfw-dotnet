@@ -1,4 +1,4 @@
-﻿namespace ImGuiGlfwDotnet;
+﻿namespace ImGuiGlfwDotnet.Sample;
 
 public class PerformanceMeasurement
 {

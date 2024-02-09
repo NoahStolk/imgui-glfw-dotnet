@@ -1,15 +1,14 @@
-﻿using ImGuiGlfwDotnet.Internals;
-using ImGuiNET;
+﻿using ImGuiNET;
 
-namespace ImGuiGlfwDotnet.Ui;
+namespace ImGuiGlfwDotnet.Sample.Ui;
 
 public static class PerformanceWindow
 {
 	private static long _previousAllocatedBytes;
 
-	public static void Render(ref bool showWindow, PerformanceMeasurement performanceMeasurement)
+	public static void Render(PerformanceMeasurement performanceMeasurement)
 	{
-		if (ImGui.Begin("Performance", ref showWindow))
+		if (ImGui.Begin("Performance"))
 		{
 			ImGui.SeparatorText("Rendering");
 

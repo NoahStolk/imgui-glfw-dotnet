@@ -27,34 +27,15 @@ public static class GlfwInput
 		MouseWheelY = (float)deltaY;
 	}
 
-	public static void MouseButtonCallback(MouseButton button, InputAction state, KeyModifiers keyModifiers)
+	public static void MouseButtonCallback(MouseButton button, InputAction state)
 	{
-		if (state is InputAction.Press or InputAction.Repeat)
-		{
-			_mouseButtonsDown[button] = true;
-
-			// TODO: Handle modifiers.
-		}
-		else
-		{
-			_mouseButtonsDown[button] = false;
-		}
+		_mouseButtonsDown[button] = state is InputAction.Press or InputAction.Repeat;
 	}
 
-	public static void KeyCallback(Keys key, InputAction state, KeyModifiers keyModifiers)
+	public static void KeyCallback(Keys key, InputAction state)
 	{
 		_keysChanged.Add(key);
-
-		if (state is InputAction.Press or InputAction.Repeat)
-		{
-			_keysDown[key] = true;
-
-			// TODO: Handle modifiers?
-		}
-		else
-		{
-			_keysDown[key] = false;
-		}
+		_keysDown[key] = state is InputAction.Press or InputAction.Repeat;
 	}
 
 	public static void CharCallback(uint codepoint)
