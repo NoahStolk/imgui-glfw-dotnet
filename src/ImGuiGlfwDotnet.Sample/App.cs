@@ -67,6 +67,8 @@ public sealed class App
 	{
 		_imGuiController.Update((float)_frameTime);
 
+		ImGui.DockSpaceOverViewport(null, ImGuiDockNodeFlags.PassthruCentralNode);
+
 		Graphics.Gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 		bool temp = true;

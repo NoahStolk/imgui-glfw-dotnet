@@ -71,6 +71,7 @@ public sealed class ImGuiController
 
 		ImGuiIOPtr io = ImGui.GetIO();
 		io.BackendFlags |= ImGuiBackendFlags.RendererHasVtxOffset;
+		io.ConfigFlags |= ImGuiConfigFlags.DockingEnable;
 
 		_vbo = _gl.GenBuffer();
 		_ebo = _gl.GenBuffer();
@@ -86,11 +87,8 @@ public sealed class ImGuiController
 
 	private unsafe void RecreateFontDeviceTexture()
 	{
-		// Build texture atlas
 		ImGuiIOPtr io = ImGui.GetIO();
 
-		// Load as RGBA 32-bit (75% of the memory is wasted, but default font is so small) because it is more likely to be compatible with user's existing shaders.
-		// If your ImTextureId represent a higher-level concept than just a GL texture id, consider calling GetTexDataAsAlpha8() instead to save on GPU memory.
 		io.Fonts.GetTexDataAsRGBA32(out IntPtr pixels, out int width, out int height, out int bytesPerPixel);
 
 		byte[] data = new byte[width * height * bytesPerPixel];
@@ -153,7 +151,7 @@ public sealed class ImGuiController
 
 	#region Input
 
-	private void UpdateImGuiInput()
+	private static void UpdateImGuiInput()
 	{
 		ImGuiIOPtr io = ImGui.GetIO();
 
@@ -184,7 +182,8 @@ public sealed class ImGuiController
 
 	private unsafe void SetUpRenderState(ImDrawDataPtr drawDataPtr)
 	{
-		// Setup render state: alpha-blending enabled, no face culling, no depth testing, scissor enabled, polygon fill
+		// TODO: Will probably need to back up the GL state here so we can properly restore it after rendering.
+		// Set up render state: alpha-blending enabled, no face culling, no depth testing, scissor enabled, polygon fill.
 		_gl.Enable(GLEnum.Blend);
 		_gl.BlendEquation(GLEnum.FuncAdd);
 		_gl.BlendFuncSeparate(GLEnum.SrcAlpha, GLEnum.OneMinusSrcAlpha, GLEnum.One, GLEnum.OneMinusSrcAlpha);
@@ -209,13 +208,9 @@ public sealed class ImGuiController
 
 		_gl.BindSampler(0, 0);
 
-		// Setup desired GL state
-		// Recreate the VAO every time (this is to easily allow multiple GL contexts to be rendered to. VAO are not shared among GL contexts)
-		// The renderer would actually work without any VAO bound, but then our VertexAttrib calls would overwrite the default one currently bound.
 		_vao = _gl.GenVertexArray();
 		_gl.BindVertexArray(_vao);
 
-		// Bind vertex/index buffers and setup attributes for ImDrawVert
 		_gl.BindBuffer(GLEnum.ArrayBuffer, _vbo);
 		_gl.BindBuffer(GLEnum.ElementArrayBuffer, _ebo);
 
@@ -237,22 +232,20 @@ public sealed class ImGuiController
 
 		SetUpRenderState(drawDataPtr);
 
-		// Will project scissor/clipping rectangles into framebuffer space
+		// Will project scissor/clipping rectangles into framebuffer space.
 		Vector2 clipOff = drawDataPtr.DisplayPos; // (0,0) unless using multi-viewports
 		Vector2 clipScale = drawDataPtr.FramebufferScale; // (1,1) unless using retina display which are often (2,2)
 
-		// Render command lists
-		for (int n = 0; n < drawDataPtr.CmdListsCount; n++)
+		for (int i = 0; i < drawDataPtr.CmdListsCount; i++)
 		{
-			ImDrawListPtr cmdListPtr = drawDataPtr.CmdLists[n];
+			ImDrawListPtr cmdListPtr = drawDataPtr.CmdLists[i];
 
-			// Upload vertex/index buffers
 			_gl.BufferData(GLEnum.ArrayBuffer, (nuint)(cmdListPtr.VtxBuffer.Size * sizeof(ImDrawVert)), (void*)cmdListPtr.VtxBuffer.Data, GLEnum.StreamDraw);
 			_gl.BufferData(GLEnum.ElementArrayBuffer, (nuint)(cmdListPtr.IdxBuffer.Size * sizeof(ushort)), (void*)cmdListPtr.IdxBuffer.Data, GLEnum.StreamDraw);
 
-			for (int cmdI = 0; cmdI < cmdListPtr.CmdBuffer.Size; cmdI++)
+			for (int j = 0; j < cmdListPtr.CmdBuffer.Size; j++)
 			{
-				ImDrawCmdPtr cmdPtr = cmdListPtr.CmdBuffer[cmdI];
+				ImDrawCmdPtr cmdPtr = cmdListPtr.CmdBuffer[j];
 				if (cmdPtr.UserCallback != IntPtr.Zero)
 					throw new NotImplementedException();
 
@@ -265,20 +258,17 @@ public sealed class ImGuiController
 				if (clipRect.X >= framebufferWidth || clipRect.Y >= framebufferHeight || clipRect.Z < 0.0f || clipRect.W < 0.0f)
 					continue;
 
-				// Apply scissor/clipping rectangle
 				_gl.Scissor((int)clipRect.X, (int)(framebufferHeight - clipRect.W), (uint)(clipRect.Z - clipRect.X), (uint)(clipRect.W - clipRect.Y));
-
-				// Bind texture, Draw
 				_gl.BindTexture(GLEnum.Texture2D, (uint)cmdPtr.TextureId);
 				_gl.DrawElementsBaseVertex(GLEnum.Triangles, cmdPtr.ElemCount, GLEnum.UnsignedShort, (void*)(cmdPtr.IdxOffset * sizeof(ushort)), (int)cmdPtr.VtxOffset);
 			}
 		}
 
-		// Destroy the temporary VAO
+		// Destroy the temporary VAO.
 		_gl.DeleteVertexArray(_vao);
 		_vao = 0;
 
-		// Restore scissors
+		// Restore scissors.
 		_gl.Disable(EnableCap.ScissorTest);
 	}
 
