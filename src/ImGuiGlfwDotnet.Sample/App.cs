@@ -74,6 +74,7 @@ public sealed class App
 		InputWindow.Render(ref temp);
 		InputDebugWindow.Render(ref temp);
 		PerformanceWindow.Render(ref temp, _performanceMeasurement);
+		SettingsWindow.Render(ref temp, Graphics.Glfw);
 
 		_imGuiController.Render();
 

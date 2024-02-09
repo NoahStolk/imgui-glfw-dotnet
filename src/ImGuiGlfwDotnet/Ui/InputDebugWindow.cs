@@ -1,6 +1,5 @@
 ﻿using ImGuiGlfwDotnet.Internals;
 using ImGuiNET;
-using System.Drawing;
 
 namespace ImGuiGlfwDotnet.Ui;
 
@@ -24,9 +23,9 @@ public static class InputDebugWindow
 			ImGui.InputText("Letters, numbers", ref _debugTextInput[0], 1024);
 			ImGui.InputText("Letters, numbers (SHIFT)", ref _debugTextInput[1], 1024);
 
-			ImGui.InputTextMultiline("Enter", ref _debugTextInput[2], 1024, new(0, 64));
+			ImGui.InputTextMultiline("Enter, arrow keys", ref _debugTextInput[2], 1024, new(0, 64));
 			ImGui.InputTextMultiline("Tab", ref _debugTextInput[3], 1024, new(0, 64), ImGuiInputTextFlags.AllowTabInput);
-			ImGui.InputTextMultiline("Shortcuts (CTRL A, CTRL C, CTRL V)", ref _debugTextInput[4], 1024, new(0, 64));
+			ImGui.InputTextMultiline("Shortcuts (CTRL+A, CTRL+C, CTRL+V)", ref _debugTextInput[4], 1024, new(0, 64));
 
 			ImGui.SeparatorText("Test mouse input");
 
@@ -48,10 +47,12 @@ public static class InputDebugWindow
 						1 => "Scrolling should go evenly per frame (not missing inputs or jumping)",
 						_ => "This should work with and without VSync",
 					};
+
 					ImGui.PushStyleColor(ImGuiCol.Text, color);
 					ImGui.TextWrapped(text);
-					ImGui.Separator();
 					ImGui.PopStyleColor();
+
+					ImGui.Separator();
 				}
 			}
 		}
