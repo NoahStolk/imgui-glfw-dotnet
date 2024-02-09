@@ -221,7 +221,7 @@ public static class KeysExtensions
 		};
 	}
 
-	public static ImGuiKey GetImGuiKey(this Keys key)
+	public static ImGuiKey GetImGuiInputKey(this Keys key)
 	{
 		return key switch
 		{

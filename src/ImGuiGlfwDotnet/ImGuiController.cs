@@ -168,7 +168,7 @@ public sealed class ImGuiController
 			if (keyValue < 0)
 				continue;
 
-			ImGuiKey imGuiKey = key.GetImGuiKey();
+			ImGuiKey imGuiKey = key.GetImGuiInputKey();
 			if (imGuiKey != ImGuiKey.None)
 				io.AddKeyEvent(imGuiKey, GlfwInput.IsKeyDown(key));
 		}
