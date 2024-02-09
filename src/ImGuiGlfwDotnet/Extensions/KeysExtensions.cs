@@ -1,7 +1,7 @@
 using ImGuiNET;
 using Silk.NET.GLFW;
 
-namespace ImGuiGlfwDotnet;
+namespace ImGuiGlfwDotnet.Extensions;
 
 // Use dictionaries to prevent string allocations.
 public static class KeysExtensions

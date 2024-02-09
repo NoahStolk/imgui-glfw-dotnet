@@ -1,7 +1,7 @@
 using Silk.NET.OpenGL;
 using System.Numerics;
 
-namespace ImGuiGlfwDotnet;
+namespace ImGuiGlfwDotnet.Extensions;
 
 public static class GlExtensions
 {

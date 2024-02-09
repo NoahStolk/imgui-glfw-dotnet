@@ -1,4 +1,5 @@
-﻿using ImGuiNET;
+﻿using ImGuiGlfwDotnet.Ui;
+using ImGuiNET;
 using Silk.NET.OpenGL;
 using System.Numerics;
 
@@ -67,12 +68,11 @@ public sealed class App
 
 		Graphics.Gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
-		ImGui.PushStyleVar(ImGuiStyleVar.WindowMinSize, new Vector2(200, 500));
-		ImGui.Begin("Test");
-		ImGui.PopStyleVar();
-		ImGui.Text("Test");
-		ImGui.End();
+		bool temp = true;
+		InputDebugWindow.Render(ref temp);
 
 		_imGuiController.Render();
+
+		GlfwInput.PostRender();
 	}
 }

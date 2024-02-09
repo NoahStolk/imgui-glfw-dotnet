@@ -1,8 +1,8 @@
 ﻿using Silk.NET.OpenGL;
 
-namespace ImGuiGlfwDotnet;
+namespace ImGuiGlfwDotnet.Internals;
 
-public static class ShaderLoader
+internal static class ShaderLoader
 {
 	public static uint Load(GL gl, string vertexCode, string fragmentCode)
 	{

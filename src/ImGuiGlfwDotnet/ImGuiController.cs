@@ -1,4 +1,6 @@
-﻿using ImGuiNET;
+﻿using ImGuiGlfwDotnet.Extensions;
+using ImGuiGlfwDotnet.Internals;
+using ImGuiNET;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using System.Numerics;

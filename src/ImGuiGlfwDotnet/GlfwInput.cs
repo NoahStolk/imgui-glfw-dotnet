@@ -1,4 +1,5 @@
-﻿using Silk.NET.GLFW;
+﻿using ImGuiGlfwDotnet.Extensions;
+using Silk.NET.GLFW;
 using System.Numerics;
 
 namespace ImGuiGlfwDotnet;
