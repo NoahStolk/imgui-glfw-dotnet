@@ -78,13 +78,11 @@ public sealed class ImGuiController
 		_shaderId = ShaderLoader.Load(_gl, _vertexShader, _fragmentShader);
 		_projectionMatrixLocation = _gl.GetUniformLocation(_shaderId, "projectionMatrix");
 		_imageLocation = _gl.GetUniformLocation(_shaderId, "image");
-
-		RecreateFontDeviceTexture();
 	}
 
 	#region Initialization
 
-	private unsafe void RecreateFontDeviceTexture()
+	public unsafe void CreateDefaultFont()
 	{
 		ImGuiIOPtr io = ImGui.GetIO();
 

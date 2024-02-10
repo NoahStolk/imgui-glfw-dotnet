@@ -6,6 +6,7 @@ Graphics.CreateWindow(new("ImGuiGlfw - Sample", Constants.WindowWidth, Constants
 Graphics.SetWindowSizeLimits(1024, 768, 4096, 2160);
 
 ImGuiController imGuiController = new(Graphics.Gl, Input.GlfwInput, Constants.WindowWidth, Constants.WindowHeight);
+imGuiController.CreateDefaultFont();
 
 ImGuiStylePtr style = ImGui.GetStyle();
 style.WindowPadding = new(4, 4);

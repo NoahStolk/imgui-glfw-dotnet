@@ -2,6 +2,16 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.5.0
+
+### Added
+
+- Added `ImGuiController.CreateDefaultFont` method to create a default font.
+
+### Changed
+
+- `ImGuiController` no longer creates a default font in the constructor. You must now call the `CreateDefaultFont` method to create a default font, or implement your own font creation logic. 
+
 ## 0.4.0
 
 ### Changed
