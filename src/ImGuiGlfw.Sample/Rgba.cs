@@ -30,12 +30,12 @@ internal readonly record struct Rgba(byte R, byte G, byte B, byte A)
 
 	public static implicit operator Vector3(Rgba color)
 	{
-		return new(color.R / (float)byte.MaxValue, color.G / (float)byte.MaxValue, color.B / (float)byte.MaxValue);
+		return new Vector3(color.R / (float)byte.MaxValue, color.G / (float)byte.MaxValue, color.B / (float)byte.MaxValue);
 	}
 
 	public static implicit operator Vector4(Rgba color)
 	{
-		return new(color.R / (float)byte.MaxValue, color.G / (float)byte.MaxValue, color.B / (float)byte.MaxValue, color.A / (float)byte.MaxValue);
+		return new Vector4(color.R / (float)byte.MaxValue, color.G / (float)byte.MaxValue, color.B / (float)byte.MaxValue, color.A / (float)byte.MaxValue);
 	}
 
 	public static Rgba Gray(float value)
@@ -44,16 +44,16 @@ internal readonly record struct Rgba(byte R, byte G, byte B, byte A)
 			throw new ArgumentOutOfRangeException(nameof(value));
 
 		byte component = (byte)(value * byte.MaxValue);
-		return new(component, component, component, byte.MaxValue);
+		return new Rgba(component, component, component, byte.MaxValue);
 	}
 
 	public static Rgba FromVector3(Vector3 vector)
 	{
-		return new((byte)(vector.X * byte.MaxValue), (byte)(vector.Y * byte.MaxValue), (byte)(vector.Z * byte.MaxValue), byte.MaxValue);
+		return new Rgba((byte)(vector.X * byte.MaxValue), (byte)(vector.Y * byte.MaxValue), (byte)(vector.Z * byte.MaxValue), byte.MaxValue);
 	}
 
 	public static Rgba FromVector4(Vector4 vector)
 	{
-		return new((byte)(vector.X * byte.MaxValue), (byte)(vector.Y * byte.MaxValue), (byte)(vector.Z * byte.MaxValue), (byte)(vector.W * byte.MaxValue));
+		return new Rgba((byte)(vector.X * byte.MaxValue), (byte)(vector.Y * byte.MaxValue), (byte)(vector.Z * byte.MaxValue), (byte)(vector.W * byte.MaxValue));
 	}
 }

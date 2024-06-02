@@ -24,7 +24,7 @@ public sealed class GlfwInput
 
 	public void CursorPosCallback(double x, double y)
 	{
-		CursorPosition = new((float)x, (float)y);
+		CursorPosition = new Vector2((float)x, (float)y);
 	}
 
 	public void MouseWheelCallback(double deltaY)

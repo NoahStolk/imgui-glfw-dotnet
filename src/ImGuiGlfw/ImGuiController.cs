@@ -131,7 +131,7 @@ public sealed class ImGuiController
 	public void Update(float deltaSeconds)
 	{
 		ImGuiIOPtr io = ImGui.GetIO();
-		io.DisplaySize = new(_windowWidth, _windowHeight);
+		io.DisplaySize = new Vector2(_windowWidth, _windowHeight);
 		io.DisplayFramebufferScale = Vector2.One;
 		io.DeltaTime = deltaSeconds;
 

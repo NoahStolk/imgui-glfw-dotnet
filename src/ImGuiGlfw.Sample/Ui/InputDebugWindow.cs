@@ -1,4 +1,5 @@
 ﻿using ImGuiNET;
+using System.Numerics;
 
 namespace ImGuiGlfw.Sample.Ui;
 
@@ -24,16 +25,16 @@ public static class InputDebugWindow
 			ImGui.InputText("Letters, numbers", ref _debugTextInput[0], 1024);
 			ImGui.InputText("Letters, numbers (SHIFT)", ref _debugTextInput[1], 1024);
 
-			ImGui.InputTextMultiline("Enter, arrow keys, backspace, delete", ref _debugTextInput[2], 1024, new(0, 64));
-			ImGui.InputTextMultiline("Tab", ref _debugTextInput[3], 1024, new(0, 64), ImGuiInputTextFlags.AllowTabInput);
-			ImGui.InputTextMultiline("CTRL shortcut\n- CTRL+A\n- CTRL+C\n- CTRL+V\n- CTRL+arrows", ref _debugTextInput[4], 1024, new(0, 64));
-			ImGui.InputTextMultiline("SHIFT shortcuts\n- SHIFT+arrows\n- SHIFT+home", ref _debugTextInput[5], 1024, new(0, 64));
+			ImGui.InputTextMultiline("Enter, arrow keys, backspace, delete", ref _debugTextInput[2], 1024, new Vector2(0, 64));
+			ImGui.InputTextMultiline("Tab", ref _debugTextInput[3], 1024, new Vector2(0, 64), ImGuiInputTextFlags.AllowTabInput);
+			ImGui.InputTextMultiline("CTRL shortcut\n- CTRL+A\n- CTRL+C\n- CTRL+V\n- CTRL+arrows", ref _debugTextInput[4], 1024, new Vector2(0, 64));
+			ImGui.InputTextMultiline("SHIFT shortcuts\n- SHIFT+arrows\n- SHIFT+home", ref _debugTextInput[5], 1024, new Vector2(0, 64));
 
 			ImGui.SeparatorText("Test mouse input");
 
 			ImGui.Checkbox("Checkbox", ref _checkbox);
 
-			if (ImGui.BeginChild("Scroll area", new(256, 128)))
+			if (ImGui.BeginChild("Scroll area", new Vector2(256, 128)))
 			{
 				for (int i = 0; i < 50; i++)
 				{
