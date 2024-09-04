@@ -1,12 +1,12 @@
 ﻿using ImGuiGlfw.Sample.Extensions;
-using ImGuiGlfw.Sample.Ui;
+using ImGuiGlfw.Sample.Services;
+using ImGuiGlfw.Sample.Services.Ui;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using StrongInject;
 
 namespace ImGuiGlfw.Sample;
 
-[Register<GraphicsOptions>(Scope.SingleInstance)]
 [Register<GlfwInput>(Scope.SingleInstance)]
 [Register<App>(Scope.SingleInstance)]
 [Register<PerformanceMeasurement>(Scope.SingleInstance)]
@@ -14,19 +14,21 @@ namespace ImGuiGlfw.Sample;
 [Register<InputWindow>(Scope.SingleInstance)]
 [Register<PerformanceWindow>(Scope.SingleInstance)]
 [Register<SettingsWindow>(Scope.SingleInstance)]
+#pragma warning disable S3881 // "IDisposable" should be implemented correctly. The source generator already implements IDisposable correctly.
 public partial class Container : IContainer<App>
+#pragma warning restore S3881
 {
 	[Factory(Scope.SingleInstance)]
-	private ImGuiController CreateImGuiController(GL gl, GraphicsOptions graphicsOptions, GlfwInput glfwInput)
+	private static ImGuiController CreateImGuiController(GL gl, GlfwInput glfwInput)
 	{
-		ImGuiController imGuiController = new(gl, glfwInput, graphicsOptions.WindowWidth, graphicsOptions.WindowHeight);
-		imGuiController.WindowResized(graphicsOptions.WindowWidth, graphicsOptions.WindowHeight);
+		ImGuiController imGuiController = new(gl, glfwInput, WindowConstants.WindowWidth, WindowConstants.WindowHeight);
+		imGuiController.WindowResized(WindowConstants.WindowWidth, WindowConstants.WindowHeight);
 		imGuiController.CreateDefaultFont();
 		return imGuiController;
 	}
 
 	[Factory(Scope.SingleInstance)]
-	private Glfw GetGlfw()
+	private static Glfw GetGlfw()
 	{
 		Glfw glfw = Glfw.GetApi();
 		glfw.Init();
@@ -43,9 +45,9 @@ public partial class Container : IContainer<App>
 	}
 
 	[Factory(Scope.SingleInstance)]
-	private unsafe WindowHandle* CreateWindow(Glfw glfw, GlfwInput glfwInput, GraphicsOptions graphicsOptions)
+	private static unsafe WindowHandle* CreateWindow(Glfw glfw, GlfwInput glfwInput)
 	{
-		WindowHandle* window = glfw.CreateWindow(graphicsOptions.WindowWidth, graphicsOptions.WindowHeight, graphicsOptions.WindowTitle, null, null);
+		WindowHandle* window = glfw.CreateWindow(WindowConstants.WindowWidth, WindowConstants.WindowHeight, WindowConstants.WindowTitle, null, null);
 		glfw.CheckError();
 		if (window == null)
 			throw new InvalidOperationException("Could not create window.");
@@ -56,7 +58,7 @@ public partial class Container : IContainer<App>
 		glfw.SetKeyCallback(window, (_, keys, _, state, _) => glfwInput.KeyCallback(keys, state));
 		glfw.SetCharCallback(window, (_, codepoint) => glfwInput.CharCallback(codepoint));
 
-		(int windowX, int windowY) = glfw.GetInitialWindowPos(graphicsOptions.WindowWidth, graphicsOptions.WindowHeight);
+		(int windowX, int windowY) = glfw.GetInitialWindowPos(WindowConstants.WindowWidth, WindowConstants.WindowHeight);
 		glfw.SetWindowPos(window, windowX, windowY);
 
 		glfw.MakeContextCurrent(window);
@@ -66,7 +68,7 @@ public partial class Container : IContainer<App>
 	}
 
 	[Factory(Scope.SingleInstance)]
-	private GL GetGl(Glfw glfw)
+	private static GL GetGl(Glfw glfw)
 	{
 		return GL.GetApi(glfw.GetProcAddress);
 	}

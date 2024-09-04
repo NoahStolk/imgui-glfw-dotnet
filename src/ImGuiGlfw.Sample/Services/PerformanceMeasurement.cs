@@ -1,4 +1,4 @@
-﻿namespace ImGuiGlfw.Sample;
+﻿namespace ImGuiGlfw.Sample.Services;
 
 public sealed class PerformanceMeasurement
 {

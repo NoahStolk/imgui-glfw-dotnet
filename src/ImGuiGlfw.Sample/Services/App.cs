@@ -1,9 +1,9 @@
-﻿using ImGuiGlfw.Sample.Ui;
+﻿using ImGuiGlfw.Sample.Services.Ui;
 using ImGuiNET;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 
-namespace ImGuiGlfw.Sample;
+namespace ImGuiGlfw.Sample.Services;
 
 public sealed class App
 {
@@ -37,7 +37,6 @@ public sealed class App
 		GlfwInput glfwInput,
 		ImGuiController imGuiController,
 		PerformanceMeasurement performanceMeasurement,
-		GraphicsOptions graphicsOptions,
 		InputDebugWindow inputDebugWindow,
 		InputWindow inputWindow,
 		PerformanceWindow performanceWindow,
@@ -56,7 +55,7 @@ public sealed class App
 
 		_currentTime = glfw.GetTime();
 
-		gl.Viewport(0, 0, (uint)graphicsOptions.WindowWidth, (uint)graphicsOptions.WindowHeight);
+		gl.Viewport(0, 0, WindowConstants.WindowWidth, WindowConstants.WindowHeight);
 		glfw.SwapInterval(0); // Turns VSync off.
 
 		glfw.SetFramebufferSizeCallback(window, (_, w, h) =>

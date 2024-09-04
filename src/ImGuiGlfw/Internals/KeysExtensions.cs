@@ -7,12 +7,6 @@ internal static class KeysExtensions
 {
 	public static ImGuiKey GetImGuiInputKey(this Keys key)
 	{
-		static ImGuiKey ConvertRange(Keys key, Keys startKey, ImGuiKey startImGuiKey)
-		{
-			int diff = (int)key - (int)startKey;
-			return startImGuiKey + diff;
-		}
-
 		return key switch
 		{
 			>= Keys.F1 and <= Keys.F24 => ConvertRange(key, Keys.F1, ImGuiKey.F1),
@@ -63,5 +57,11 @@ internal static class KeysExtensions
 			Keys.BackSlash => ImGuiKey.Backslash,
 			_ => ImGuiKey.None,
 		};
+
+		static ImGuiKey ConvertRange(Keys key, Keys startKey, ImGuiKey startImGuiKey)
+		{
+			int diff = (int)key - (int)startKey;
+			return startImGuiKey + diff;
+		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿using ImGuiGlfw.Sample.Utils;
 using ImGuiNET;
 
-namespace ImGuiGlfw.Sample.Ui;
+namespace ImGuiGlfw.Sample.Services.Ui;
 
 public sealed class PerformanceWindow
 {

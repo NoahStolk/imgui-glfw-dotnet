@@ -2,7 +2,7 @@
 using ImGuiNET;
 using Silk.NET.GLFW;
 
-namespace ImGuiGlfw.Sample.Ui;
+namespace ImGuiGlfw.Sample.Services.Ui;
 
 public sealed class InputWindow
 {

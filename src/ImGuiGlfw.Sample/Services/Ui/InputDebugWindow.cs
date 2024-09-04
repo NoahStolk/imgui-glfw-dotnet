@@ -2,7 +2,7 @@
 using ImGuiNET;
 using System.Numerics;
 
-namespace ImGuiGlfw.Sample.Ui;
+namespace ImGuiGlfw.Sample.Services.Ui;
 
 public sealed class InputDebugWindow
 {

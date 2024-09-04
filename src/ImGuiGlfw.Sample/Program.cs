@@ -1,6 +1,6 @@
 ﻿using ImGuiGlfw.Sample;
+using ImGuiGlfw.Sample.Services;
 using StrongInject;
 
-Container container = new();
-Owned<App> app = container.Resolve();
+using Owned<App> app = new Container().Resolve();
 app.Value.Run();
