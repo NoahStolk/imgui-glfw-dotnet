@@ -19,15 +19,6 @@ public partial class Container : IContainer<App>
 #pragma warning restore S3881
 {
 	[Factory(Scope.SingleInstance)]
-	private static ImGuiController CreateImGuiController(GL gl, GlfwInput glfwInput)
-	{
-		ImGuiController imGuiController = new(gl, glfwInput, WindowConstants.WindowWidth, WindowConstants.WindowHeight);
-		imGuiController.WindowResized(WindowConstants.WindowWidth, WindowConstants.WindowHeight);
-		imGuiController.CreateDefaultFont();
-		return imGuiController;
-	}
-
-	[Factory(Scope.SingleInstance)]
 	private static Glfw GetGlfw()
 	{
 		Glfw glfw = Glfw.GetApi();
@@ -71,5 +62,13 @@ public partial class Container : IContainer<App>
 	private static GL GetGl(Glfw glfw)
 	{
 		return GL.GetApi(glfw.GetProcAddress);
+	}
+
+	[Factory(Scope.SingleInstance)]
+	private static ImGuiController CreateImGuiController(GL gl, GlfwInput glfwInput)
+	{
+		ImGuiController imGuiController = new(gl, glfwInput, WindowConstants.WindowWidth, WindowConstants.WindowHeight);
+		imGuiController.CreateDefaultFont();
+		return imGuiController;
 	}
 }
