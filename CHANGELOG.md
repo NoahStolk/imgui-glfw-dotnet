@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.8.0
+
+### Changed
+
+- Updated ImGui.NET dependency from 1.90.6.1 to 1.91.0.1.
+
 ## 0.7.0
 
 ### Changed
