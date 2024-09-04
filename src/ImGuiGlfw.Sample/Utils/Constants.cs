@@ -1,4 +1,4 @@
-namespace ImGuiGlfw.Sample;
+namespace ImGuiGlfw.Sample.Utils;
 
 public static class Constants
 {

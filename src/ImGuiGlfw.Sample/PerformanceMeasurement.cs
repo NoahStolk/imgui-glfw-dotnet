@@ -1,6 +1,6 @@
 ﻿namespace ImGuiGlfw.Sample;
 
-public class PerformanceMeasurement
+public sealed class PerformanceMeasurement
 {
 	private int _currentSecond;
 	private int _renders;

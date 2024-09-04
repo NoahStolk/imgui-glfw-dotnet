@@ -1,6 +1,6 @@
 ﻿using System.Numerics;
 
-namespace ImGuiGlfw.Sample;
+namespace ImGuiGlfw.Sample.Utils;
 
 internal readonly record struct Rgba(byte R, byte G, byte B, byte A)
 {

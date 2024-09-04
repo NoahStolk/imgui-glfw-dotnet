@@ -1,4 +1,5 @@
-﻿using ImGuiNET;
+﻿using ImGuiGlfw.Sample.Utils;
+using ImGuiNET;
 using System.Numerics;
 
 namespace ImGuiGlfw.Sample.Ui;

@@ -1,4 +1,5 @@
-﻿using ImGuiNET;
+﻿using ImGuiGlfw.Sample.Utils;
+using ImGuiNET;
 using Silk.NET.GLFW;
 
 namespace ImGuiGlfw.Sample.Ui;
