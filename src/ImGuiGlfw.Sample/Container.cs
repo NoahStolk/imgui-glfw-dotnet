@@ -1,6 +1,7 @@
 ﻿using ImGuiGlfw.Sample.Extensions;
 using ImGuiGlfw.Sample.Services;
 using ImGuiGlfw.Sample.Services.Ui;
+using ImGuiGlfw.Sample.Utils;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using StrongInject;

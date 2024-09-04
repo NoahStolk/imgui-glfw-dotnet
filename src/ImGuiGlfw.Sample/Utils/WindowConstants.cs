@@ -1,4 +1,4 @@
-﻿namespace ImGuiGlfw.Sample.Services;
+﻿namespace ImGuiGlfw.Sample.Utils;
 
 public static class WindowConstants
 {
