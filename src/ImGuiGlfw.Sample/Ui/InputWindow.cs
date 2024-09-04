@@ -4,11 +4,18 @@ using Silk.NET.GLFW;
 
 namespace ImGuiGlfw.Sample.Ui;
 
-public static class InputWindow
+public sealed class InputWindow
 {
-	private static readonly Dictionary<Keys, string> _keyDisplayStringCache = [];
+	private readonly Dictionary<Keys, string> _keyDisplayStringCache = [];
 
-	public static void Render()
+	private readonly GlfwInput _glfwInput;
+
+	public InputWindow(GlfwInput glfwInput)
+	{
+		_glfwInput = glfwInput;
+	}
+
+	public void Render()
 	{
 		if (ImGui.Begin("Input"))
 		{
@@ -35,7 +42,7 @@ public static class InputWindow
 					if (!Enum.IsDefined(key))
 						continue;
 
-					bool isDown = Input.GlfwInput.IsKeyDown(key);
+					bool isDown = _glfwInput.IsKeyDown(key);
 
 					ImGui.TableNextColumn();
 
@@ -53,11 +60,11 @@ public static class InputWindow
 
 			ImGui.SeparatorText("GLFW pressed chars");
 
-			ImGui.Text(Inline.Span($"{Input.GlfwInput.CharsPressed.Count} key(s):"));
+			ImGui.Text(Inline.Span($"{_glfwInput.CharsPressed.Count} key(s):"));
 			ImGui.SameLine();
-			for (int i = 0; i < Input.GlfwInput.CharsPressed.Count; i++)
+			for (int i = 0; i < _glfwInput.CharsPressed.Count; i++)
 			{
-				ImGui.Text(Inline.Span((char)Input.GlfwInput.CharsPressed[i]));
+				ImGui.Text(Inline.Span((char)_glfwInput.CharsPressed[i]));
 				ImGui.SameLine();
 			}
 		}

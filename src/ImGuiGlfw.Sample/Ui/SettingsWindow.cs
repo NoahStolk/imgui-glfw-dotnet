@@ -3,16 +3,23 @@ using Silk.NET.GLFW;
 
 namespace ImGuiGlfw.Sample.Ui;
 
-public static class SettingsWindow
+public sealed class SettingsWindow
 {
-	private static bool _vsync;
+	private readonly Glfw _glfw;
 
-	public static void Render(Glfw glfw)
+	private bool _vsync;
+
+	public SettingsWindow(Glfw glfw)
+	{
+		_glfw = glfw;
+	}
+
+	public void Render()
 	{
 		if (ImGui.Begin("Settings"))
 		{
 			if (ImGui.Checkbox("VSync", ref _vsync))
-				glfw.SwapInterval(_vsync ? 1 : 0);
+				_glfw.SwapInterval(_vsync ? 1 : 0);
 		}
 
 		ImGui.End();

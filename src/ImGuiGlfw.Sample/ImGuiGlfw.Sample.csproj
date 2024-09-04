@@ -13,6 +13,10 @@
     <ProjectReference Include="..\ImGuiGlfw\ImGuiGlfw.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <PackageReference Include="StrongInject" Version="1.4.4" />
+  </ItemGroup>
+
   <ItemGroup Label="Static code analysis">
     <PackageReference Include="Microsoft.CodeAnalysis.BannedApiAnalyzers" Version="3.3.4">
       <PrivateAssets>all</PrivateAssets>

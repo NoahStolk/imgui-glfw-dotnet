@@ -3,18 +3,25 @@ using ImGuiNET;
 
 namespace ImGuiGlfw.Sample.Ui;
 
-public static class PerformanceWindow
+public sealed class PerformanceWindow
 {
-	private static long _previousAllocatedBytes;
+	private long _previousAllocatedBytes;
 
-	public static void Render(PerformanceMeasurement performanceMeasurement)
+	private readonly PerformanceMeasurement _performanceMeasurement;
+
+	public PerformanceWindow(PerformanceMeasurement performanceMeasurement)
+	{
+		_performanceMeasurement = performanceMeasurement;
+	}
+
+	public void Render()
 	{
 		if (ImGui.Begin("Performance"))
 		{
 			ImGui.SeparatorText("Rendering");
 
-			ImGui.Text(Inline.Span($"{performanceMeasurement.Fps} FPS"));
-			ImGui.Text(Inline.Span($"Frame time: {performanceMeasurement.FrameTime:0.0000} s"));
+			ImGui.Text(Inline.Span($"{_performanceMeasurement.Fps} FPS"));
+			ImGui.Text(Inline.Span($"Frame time: {_performanceMeasurement.FrameTime:0.0000} s"));
 
 			ImGui.SeparatorText("Allocations");
 

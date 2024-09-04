@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace ImGuiGlfw.Sample.Ui;
 
-public static class InputDebugWindow
+public sealed class InputDebugWindow
 {
 	private static readonly string[] _debugTextInput =
 	[
@@ -15,9 +15,9 @@ public static class InputDebugWindow
 		"Select all text, copy, paste, and use CTRL + arrows to navigate between words.\nUse CTRL + backspace to delete words.",
 		"Use SHIFT + arrows / home / end / page up / page down to select text.",
 	];
-	private static bool _checkbox;
+	private bool _checkbox;
 
-	public static void Render()
+	public void Render()
 	{
 		if (ImGui.Begin("Input debug"))
 		{
