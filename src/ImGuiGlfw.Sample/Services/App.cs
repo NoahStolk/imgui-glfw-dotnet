@@ -119,6 +119,6 @@ public sealed class App
 
 		_imGuiController.Render();
 
-		_glfwInput.PostRender();
+		_glfwInput.EndFrame();
 	}
 }

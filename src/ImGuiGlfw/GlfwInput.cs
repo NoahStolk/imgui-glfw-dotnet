@@ -5,10 +5,10 @@ namespace ImGuiGlfw;
 
 public sealed class GlfwInput
 {
-	private readonly Dictionary<MouseButton, bool> _mouseButtonsDown = new();
+	private readonly Dictionary<MouseButton, InputAction> _mouseButtons = new();
 	private readonly List<MouseButton> _mouseButtonsChanged = [];
 
-	private readonly Dictionary<Keys, bool> _keysDown = [];
+	private readonly Dictionary<Keys, InputAction> _keys = [];
 	private readonly List<Keys> _keysChanged = [];
 
 	private readonly List<uint> _charsPressed = [];
@@ -35,13 +35,13 @@ public sealed class GlfwInput
 	public void MouseButtonCallback(MouseButton button, InputAction state)
 	{
 		_mouseButtonsChanged.Add(button);
-		_mouseButtonsDown[button] = state is InputAction.Press or InputAction.Repeat;
+		_mouseButtons[button] = state;
 	}
 
 	public void KeyCallback(Keys key, InputAction state)
 	{
 		_keysChanged.Add(key);
-		_keysDown[key] = state is InputAction.Press or InputAction.Repeat;
+		_keys[key] = state;
 	}
 
 	public void CharCallback(uint codepoint)
@@ -53,7 +53,7 @@ public sealed class GlfwInput
 
 	public bool IsMouseButtonDown(MouseButton button)
 	{
-		return _mouseButtonsDown.TryGetValue(button, out bool isDown) && isDown;
+		return _mouseButtons.TryGetValue(button, out InputAction inputAction) && inputAction == InputAction.Press;
 	}
 
 	public bool IsMouseButtonPressed(MouseButton button)
@@ -68,20 +68,25 @@ public sealed class GlfwInput
 
 	public bool IsKeyDown(Keys key)
 	{
-		return _keysDown.TryGetValue(key, out bool isDown) && isDown;
+		return _keys.TryGetValue(key, out InputAction inputAction) && inputAction is InputAction.Press or InputAction.Repeat;
+	}
+
+	public bool IsKeyRepeating(Keys key)
+	{
+		return _keys.TryGetValue(key, out InputAction inputAction) && inputAction == InputAction.Repeat;
 	}
 
 	public bool IsKeyPressed(Keys key)
 	{
-		return _keysChanged.Contains(key) && IsKeyDown(key);
+		return _keysChanged.Contains(key) && _keys.TryGetValue(key, out InputAction inputAction) && inputAction == InputAction.Press;
 	}
 
 	public bool IsKeyReleased(Keys key)
 	{
-		return _keysChanged.Contains(key) && !IsKeyDown(key);
+		return _keysChanged.Contains(key) && _keys.TryGetValue(key, out InputAction inputAction) && inputAction == InputAction.Release;
 	}
 
-	public void PostRender()
+	public void EndFrame()
 	{
 		_mouseButtonsChanged.Clear();
 		_keysChanged.Clear();

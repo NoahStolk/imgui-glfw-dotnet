@@ -2,6 +2,20 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.9.0
+
+### Added
+
+- Added `GlfwInput.IsKeyRepeating` method.
+
+### Changed
+
+- Renamed `GlfwInput.PostRender` method to `GlfwInput.EndFrame`.
+
+### Fixed
+
+- Fixed `GlfwInput.IsKeyPressed` returning `true` when the key was in a repeat state.
+
 ## 0.8.0
 
 ### Changed
