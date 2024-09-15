@@ -9,7 +9,7 @@ public sealed class InputDebugWindow
 	private static readonly string[] _debugTextInput =
 	[
 		"Type letters and numbers: ",
-		"NOW HOLD SHIFT: ",
+		"Type letters and numbers while holding SHIFT: ",
 		"Enter some enters, and use the arrow keys to navigate.\nUse backspace and delete to remove text.",
 		"Insert some tabs (only works for this input field).\nHold keys to see the repeat rate.",
 		"Select all text, copy, paste, and use CTRL + arrows to navigate between words.\nUse CTRL + backspace to delete words.",
@@ -19,7 +19,7 @@ public sealed class InputDebugWindow
 
 	public void Render()
 	{
-		if (ImGui.Begin("Input debug"))
+		if (ImGui.Begin("Input testing"))
 		{
 			ImGui.SeparatorText("Test keyboard input");
 

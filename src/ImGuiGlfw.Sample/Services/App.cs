@@ -23,7 +23,8 @@ public sealed class App
 	private readonly ImGuiController _imGuiController;
 	private readonly PerformanceMeasurement _performanceMeasurement;
 	private readonly InputDebugWindow _inputDebugWindow;
-	private readonly InputWindow _inputWindow;
+	private readonly KeyboardInputWindow _keyboardInputWindow;
+	private readonly MouseInputWindow _mouseInputWindow;
 	private readonly PerformanceWindow _performanceWindow;
 	private readonly SettingsWindow _settingsWindow;
 
@@ -39,7 +40,8 @@ public sealed class App
 		ImGuiController imGuiController,
 		PerformanceMeasurement performanceMeasurement,
 		InputDebugWindow inputDebugWindow,
-		InputWindow inputWindow,
+		KeyboardInputWindow keyboardInputWindow,
+		MouseInputWindow mouseInputWindow,
 		PerformanceWindow performanceWindow,
 		SettingsWindow settingsWindow)
 	{
@@ -50,7 +52,8 @@ public sealed class App
 		_imGuiController = imGuiController;
 		_performanceMeasurement = performanceMeasurement;
 		_inputDebugWindow = inputDebugWindow;
-		_inputWindow = inputWindow;
+		_keyboardInputWindow = keyboardInputWindow;
+		_mouseInputWindow = mouseInputWindow;
 		_performanceWindow = performanceWindow;
 		_settingsWindow = settingsWindow;
 
@@ -112,8 +115,9 @@ public sealed class App
 		_gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 		ImGui.ShowDemoWindow();
-		_inputWindow.Render();
 		_inputDebugWindow.Render();
+		_keyboardInputWindow.Render();
+		_mouseInputWindow.Render();
 		_performanceWindow.Render();
 		_settingsWindow.Render();
 

@@ -12,7 +12,8 @@ namespace ImGuiGlfw.Sample;
 [Register<App>(Scope.SingleInstance)]
 [Register<PerformanceMeasurement>(Scope.SingleInstance)]
 [Register<InputDebugWindow>(Scope.SingleInstance)]
-[Register<InputWindow>(Scope.SingleInstance)]
+[Register<KeyboardInputWindow>(Scope.SingleInstance)]
+[Register<MouseInputWindow>(Scope.SingleInstance)]
 [Register<PerformanceWindow>(Scope.SingleInstance)]
 [Register<SettingsWindow>(Scope.SingleInstance)]
 #pragma warning disable S3881 // "IDisposable" should be implemented correctly. The source generator already implements IDisposable correctly.
