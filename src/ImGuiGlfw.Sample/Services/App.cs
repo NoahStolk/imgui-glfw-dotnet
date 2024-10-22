@@ -1,6 +1,6 @@
-﻿using ImGuiGlfw.Sample.Services.Ui;
+﻿using Hexa.NET.ImGui;
+using ImGuiGlfw.Sample.Services.Ui;
 using ImGuiGlfw.Sample.Utils;
-using ImGuiNET;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 
