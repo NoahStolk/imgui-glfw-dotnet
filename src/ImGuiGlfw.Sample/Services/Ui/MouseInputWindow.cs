@@ -59,9 +59,9 @@ public sealed class MouseInputWindow
 
 			ImGui.SeparatorText("GLFW [LMB] state");
 
-			ImGui.Text(Inline.Utf8($"Down: {(_glfwInput.IsMouseButtonDown(MouseButton.Left) ? "true" : "false")}"));
-			ImGui.Text(Inline.Utf8($"Pressed: {(_glfwInput.IsMouseButtonPressed(MouseButton.Left) ? "true" : "false")}"));
-			ImGui.Text(Inline.Utf8($"Released: {(_glfwInput.IsMouseButtonReleased(MouseButton.Left) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf8($"Down: {(_glfwInput.IsMouseButtonDown(MouseButton.Left) ? "true"u8 : "false"u8)}"));
+			ImGui.Text(Inline.Utf8($"Pressed: {(_glfwInput.IsMouseButtonPressed(MouseButton.Left) ? "true"u8 : "false"u8)}"));
+			ImGui.Text(Inline.Utf8($"Released: {(_glfwInput.IsMouseButtonReleased(MouseButton.Left) ? "true"u8 : "false"u8)}"));
 		}
 
 		ImGui.End();

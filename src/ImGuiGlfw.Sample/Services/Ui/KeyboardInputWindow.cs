@@ -67,7 +67,7 @@ public sealed class KeyboardInputWindow
 			{
 				for (int i = 0; i < _glfwInput.CharsPressed.Count; i++)
 				{
-					//ImGui.Text(Inline.Span((char)_glfwInput.CharsPressed[i]));
+					ImGui.Text(Inline.Utf8((char)_glfwInput.CharsPressed[i]));
 				}
 			}
 
@@ -75,10 +75,10 @@ public sealed class KeyboardInputWindow
 
 			ImGui.SeparatorText("GLFW [SPACE] key state");
 
-			ImGui.Text(Inline.Utf8($"Down: {(_glfwInput.IsKeyDown(Keys.Space) ? "true" : "false")}"));
-			ImGui.Text(Inline.Utf8($"Repeating: {(_glfwInput.IsKeyRepeating(Keys.Space) ? "true" : "false")}"));
-			ImGui.Text(Inline.Utf8($"Pressed: {(_glfwInput.IsKeyPressed(Keys.Space) ? "true" : "false")}"));
-			ImGui.Text(Inline.Utf8($"Released: {(_glfwInput.IsKeyReleased(Keys.Space) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf8($"Down: {(_glfwInput.IsKeyDown(Keys.Space) ? "true"u8 : "false"u8)}"));
+			ImGui.Text(Inline.Utf8($"Repeating: {(_glfwInput.IsKeyRepeating(Keys.Space) ? "true"u8 : "false"u8)}"));
+			ImGui.Text(Inline.Utf8($"Pressed: {(_glfwInput.IsKeyPressed(Keys.Space) ? "true"u8 : "false"u8)}"));
+			ImGui.Text(Inline.Utf8($"Released: {(_glfwInput.IsKeyReleased(Keys.Space) ? "true"u8 : "false"u8)}"));
 		}
 
 		ImGui.End();
