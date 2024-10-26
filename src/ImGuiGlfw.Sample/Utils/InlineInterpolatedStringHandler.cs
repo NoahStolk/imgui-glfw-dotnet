@@ -49,7 +49,7 @@ internal ref struct InlineInterpolatedStringHandler
 	public void AppendFormatted<T>(T t, ReadOnlySpan<char> format = default, IFormatProvider? provider = null)
 		where T : IUtf8SpanFormattable
 	{
-		t.TryFormat(Inline.Buffer[_charsWritten..], out int charsWritten, format, provider);
-		_charsWritten += charsWritten;
+		if (t.TryFormat(Inline.Buffer[_charsWritten..], out int charsWritten, format, provider))
+			_charsWritten += charsWritten;
 	}
 }
