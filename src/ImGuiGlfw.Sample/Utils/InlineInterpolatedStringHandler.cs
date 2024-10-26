@@ -15,13 +15,8 @@ internal ref struct InlineInterpolatedStringHandler
 
 	public static implicit operator ReadOnlySpan<byte>(InlineInterpolatedStringHandler handler)
 	{
+		Inline.Buffer[handler._charsWritten] = 0;
 		return Inline.Buffer[..handler._charsWritten];
-	}
-
-	public void AppendLiteral(ReadOnlySpan<byte> s)
-	{
-		if (s.TryCopyTo(Inline.Buffer[_charsWritten..]))
-			_charsWritten += s.Length;
 	}
 
 	public unsafe void AppendLiteral(string s)
@@ -36,20 +31,24 @@ internal ref struct InlineInterpolatedStringHandler
 				throw new InvalidOperationException("The formatted string is too long.");
 
 			fixed (byte* bufferPtr = Inline.Buffer)
-				_ = Encoding.UTF8.GetBytes(utf16Ptr, s.Length, bufferPtr + _charsWritten, utf8ByteCount);
+				_charsWritten += Encoding.UTF8.GetBytes(utf16Ptr, s.Length, bufferPtr + _charsWritten, utf8ByteCount);
 		}
 	}
 
 	public void AppendFormatted(ReadOnlySpan<byte> s)
 	{
-		if (s.TryCopyTo(Inline.Buffer[_charsWritten..]))
-			_charsWritten += s.Length;
+		if (!s.TryCopyTo(Inline.Buffer[_charsWritten..]))
+			throw new InvalidOperationException("The formatted string is too long.");
+
+		_charsWritten += s.Length;
 	}
 
 	public void AppendFormatted<T>(T t, ReadOnlySpan<char> format = default, IFormatProvider? provider = null)
 		where T : IUtf8SpanFormattable
 	{
-		if (t.TryFormat(Inline.Buffer[_charsWritten..], out int charsWritten, format, provider))
-			_charsWritten += charsWritten;
+		if (!t.TryFormat(Inline.Buffer[_charsWritten..], out int charsWritten, format, provider))
+			throw new InvalidOperationException("The formatted string is too long.");
+
+		_charsWritten += charsWritten;
 	}
 }
