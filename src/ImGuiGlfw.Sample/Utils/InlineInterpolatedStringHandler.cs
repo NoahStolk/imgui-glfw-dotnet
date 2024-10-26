@@ -3,19 +3,21 @@ using System.Text;
 
 namespace ImGuiGlfw.Sample.Utils;
 
-#pragma warning disable CA1822, RCS1163
+#pragma warning disable RCS1163
 [InterpolatedStringHandler]
 internal ref struct InlineInterpolatedStringHandler
 {
 	private int _charsWritten;
 
+	// ReSharper disable UnusedParameter.Local
 	public InlineInterpolatedStringHandler(int literalLength, int formattedCount)
 	{
 	}
 
+	// ReSharper restore UnusedParameter.Local
 	public static implicit operator ReadOnlySpan<byte>(InlineInterpolatedStringHandler handler)
 	{
-		Inline.Buffer[handler._charsWritten] = 0;
+		Inline.Buffer[handler._charsWritten] = 0x00; // Null-terminate the UTF-8 string.
 		return Inline.Buffer[..handler._charsWritten];
 	}
 
