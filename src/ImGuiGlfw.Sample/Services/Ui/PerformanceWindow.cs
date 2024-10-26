@@ -5,8 +5,6 @@ namespace ImGuiGlfw.Sample.Services.Ui;
 
 public sealed class PerformanceWindow
 {
-	private long _previousAllocatedBytes;
-
 	private readonly PerformanceMeasurement _performanceMeasurement;
 
 	public PerformanceWindow(PerformanceMeasurement performanceMeasurement)
@@ -25,10 +23,8 @@ public sealed class PerformanceWindow
 
 			ImGui.SeparatorText("Allocations");
 
-			long allocatedBytes = GC.GetAllocatedBytesForCurrentThread();
-			ImGui.Text(Inline.Utf8($"Allocated: {allocatedBytes:N0} bytes"));
-			ImGui.Text(Inline.Utf8($"Since last update: {allocatedBytes - _previousAllocatedBytes:N0} bytes"));
-			_previousAllocatedBytes = allocatedBytes;
+			ImGui.Text(Inline.Utf8($"Allocated: {_performanceMeasurement.AllocatedBytes:N0} bytes"));
+			ImGui.Text(Inline.Utf8($"Since last update: {_performanceMeasurement.AllocatedBytesSinceLastUpdate:N0} bytes"));
 
 			for (int i = 0; i < GC.MaxGeneration + 1; i++)
 				ImGui.Text(Inline.Utf8($"Gen{i}: {GC.CollectionCount(i)} times"));
