@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup Label="External dependencies">
-    <PackageReference Include="Hexa.NET.ImGui" Version="2.1.9" />
+    <PackageReference Include="Hexa.NET.ImGui" Version="2.1.10" />
     <PackageReference Include="Silk.NET.GLFW" Version="2.21.0" />
     <PackageReference Include="Silk.NET.OpenGL" Version="2.21.0" />
   </ItemGroup>
