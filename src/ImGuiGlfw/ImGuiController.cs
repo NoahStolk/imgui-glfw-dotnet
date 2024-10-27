@@ -3,7 +3,6 @@ using ImGuiGlfw.Internals;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 using System.Numerics;
-using System.Runtime.InteropServices;
 
 namespace ImGuiGlfw;
 
