@@ -1,4 +1,4 @@
-﻿using ImGuiGlfw.Sample.Utils;
+﻿using Detach.Numerics;
 using ImGuiNET;
 using System.Numerics;
 

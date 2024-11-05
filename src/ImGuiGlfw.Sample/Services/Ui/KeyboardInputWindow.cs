@@ -1,4 +1,5 @@
-﻿using ImGuiGlfw.Sample.Utils;
+﻿using Detach;
+using Detach.Numerics;
 using ImGuiNET;
 using Silk.NET.GLFW;
 using System.Numerics;
@@ -61,12 +62,12 @@ public sealed class KeyboardInputWindow
 
 			ImGui.SeparatorText("GLFW pressed chars");
 
-			ImGui.Text(Inline.Span($"{_glfwInput.CharsPressed.Count} key(s):"));
+			ImGui.Text(Inline.Utf16($"{_glfwInput.CharsPressed.Count} key(s):"));
 			if (ImGui.BeginChild("CharsPressedChildWindow", new Vector2(0, 48), ImGuiChildFlags.Border, ImGuiWindowFlags.AlwaysVerticalScrollbar))
 			{
 				for (int i = 0; i < _glfwInput.CharsPressed.Count; i++)
 				{
-					ImGui.Text(Inline.Span((char)_glfwInput.CharsPressed[i]));
+					ImGui.Text(Inline.Utf16((char)_glfwInput.CharsPressed[i]));
 				}
 			}
 
@@ -74,10 +75,10 @@ public sealed class KeyboardInputWindow
 
 			ImGui.SeparatorText("GLFW [SPACE] key state");
 
-			ImGui.Text(Inline.Span($"Down: {(_glfwInput.IsKeyDown(Keys.Space) ? "true" : "false")}"));
-			ImGui.Text(Inline.Span($"Repeating: {(_glfwInput.IsKeyRepeating(Keys.Space) ? "true" : "false")}"));
-			ImGui.Text(Inline.Span($"Pressed: {(_glfwInput.IsKeyPressed(Keys.Space) ? "true" : "false")}"));
-			ImGui.Text(Inline.Span($"Released: {(_glfwInput.IsKeyReleased(Keys.Space) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf16($"Down: {(_glfwInput.IsKeyDown(Keys.Space) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf16($"Repeating: {(_glfwInput.IsKeyRepeating(Keys.Space) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf16($"Pressed: {(_glfwInput.IsKeyPressed(Keys.Space) ? "true" : "false")}"));
+			ImGui.Text(Inline.Utf16($"Released: {(_glfwInput.IsKeyReleased(Keys.Space) ? "true" : "false")}"));
 		}
 
 		ImGui.End();

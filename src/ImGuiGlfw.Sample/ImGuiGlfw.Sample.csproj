@@ -14,6 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="NoahStolk.Detach" Version="0.16.1" />
     <PackageReference Include="StrongInject" Version="1.4.4" />
   </ItemGroup>
 
