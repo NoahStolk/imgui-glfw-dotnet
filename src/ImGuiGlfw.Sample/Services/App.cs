@@ -1,6 +1,6 @@
-﻿using ImGuiGlfw.Sample.Services.Ui;
+﻿using Hexa.NET.ImGui;
+using ImGuiGlfw.Sample.Services.Ui;
 using ImGuiGlfw.Sample.Utils;
-using ImGuiNET;
 using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
 
@@ -91,7 +91,7 @@ public sealed class App
 		if (_frameTime > _maxMainDelta)
 			_frameTime = _maxMainDelta;
 
-		_performanceMeasurement.Update(mainStartTime, _frameTime);
+		_performanceMeasurement.UpdateFrameTime(mainStartTime, _frameTime);
 
 		_currentTime = mainStartTime;
 		_accumulator += _frameTime;
@@ -115,6 +115,9 @@ public sealed class App
 		_gl.Clear(ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit);
 
 		ImGui.ShowDemoWindow();
+
+		_performanceMeasurement.UpdateAllocatedBytes(GC.GetAllocatedBytesForCurrentThread());
+
 		_inputDebugWindow.Render();
 		_keyboardInputWindow.Render();
 		_mouseInputWindow.Render();
