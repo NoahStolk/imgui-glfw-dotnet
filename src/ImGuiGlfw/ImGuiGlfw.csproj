@@ -14,13 +14,13 @@
     <Copyright>Copyright © Noah Stolk</Copyright>
     <RepositoryType>git</RepositoryType>
     <RepositoryUrl>https://github.com/NoahStolk/imgui-glfw-dotnet</RepositoryUrl>
-    <Version>0.9.0</Version>
+    <Version>0.10.0</Version>
   </PropertyGroup>
 
   <ItemGroup Label="External dependencies">
     <PackageReference Include="ImGui.NET" Version="1.91.0.1" />
-    <PackageReference Include="Silk.NET.GLFW" Version="2.21.0" />
-    <PackageReference Include="Silk.NET.OpenGL" Version="2.21.0" />
+    <PackageReference Include="Silk.NET.GLFW" Version="2.22.0" />
+    <PackageReference Include="Silk.NET.OpenGL" Version="2.22.0" />
   </ItemGroup>
 
   <ItemGroup Label="Static code analysis">

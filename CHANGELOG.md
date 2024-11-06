@@ -2,6 +2,12 @@
 
 This library uses [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## 0.10.0
+
+### Changed
+
+- Updated Silk.NET dependencies from 2.21.0 to 2.22.0.
+
 ## 0.9.0
 
 ### Added
